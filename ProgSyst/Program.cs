@@ -1,19 +1,18 @@
 ﻿using System;
 
-namespace Système
+namespace System
 {
     public class Program
     {
         static void Main()
         {
+            bool start = true;
             string key;
             while (true) //temporaire
             {
                 //Verification
                 //"Source", "Target", "LogJ", "LogEtat".
                 string path = Directory.GetCurrentDirectory();
-                Console.WriteLine(path);
-                Console.ReadLine();
                 if (!Directory.Exists(path + "path_source"))
                 {
                     Console.WriteLine($"Directory {path + "path_source"} does not exist!");
@@ -59,7 +58,14 @@ namespace Système
                 }
                 Thread.Sleep(500);
                 Console.Clear();
-                Console.WriteLine("- EasySave -\n\n1 - Save\n2 - Show saves\n3 - Close");
+                Console.WriteLine(" _______     ___           _______.____    ____  _______.     ___   ____    ____  _______ ");
+                Console.WriteLine("|   ____|   /   \\         /       |\\   \\  /   / /       |    /   \\  \\   \\  /   / |   ____|");
+                Console.WriteLine("|  |__     /  ^  \\       |   (----` \\   \\/   / |   (----`   /  ^  \\  \\   \\/   /  |  |_");
+                Console.WriteLine("|   __|   /  /_\\  \\       \\   \\      \\_    _/   \\   \\      /  /_\\  \\  \\      /   |   __| ");
+                Console.WriteLine("|  |____ /  _____  \\  .----)   |       |  | .----)   |    /  _____  \\  \\    /    |  |____ ");
+                Console.WriteLine("|_______/__/     \\__\\ |_______/        |__| |_______/    /__/     \\__\\  \\__/     |_______|");
+                Console.WriteLine("\nCurrent folder : " + path);
+                Console.WriteLine("\n\n1 - Save\n2 - Show saves\n3 - Delete folders\n4 - Close\n");
                 key = Console.ReadLine();
                 if (key == "1")
                 {

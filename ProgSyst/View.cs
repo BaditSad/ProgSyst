@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Système
+namespace System
 {
     class View
     {
@@ -10,11 +10,11 @@ namespace Système
         }
         public void CreateSave()
         {
-            Console.WriteLine(created_save);
+            //Console.WriteLine(created_save);
         }
         public void ShowSave()
         {
-            Console.WriteLine(show_save);
+            //Console.WriteLine(show_save);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Système
+namespace System
 {
     class Model
     {
