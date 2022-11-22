@@ -11,7 +11,6 @@ namespace System
             //----------------------
             var NewBanner = new Program();
             bool start = true;
-            bool start = true;
             string key;
             string lang = "";
             string path = Directory.GetCurrentDirectory();
