@@ -13,8 +13,16 @@ namespace System
             bool start = true;
             string key;
             string lang = "";
+            bool firstLaunch;
             string path = Directory.GetCurrentDirectory();
-            bool firstLaunch = true; //à recup dans config pour savoir si c'est le premier demarrage ou non pour choisir la langue
+            if (!File.Exists(path + "\\Source\\Config.txt"))
+            {
+                firstLaunch = true;
+            }
+            else
+            {
+                firstLaunch = false;
+            }
             //---------------------------------
             //Lancement de la boucle principale
             //---------------------------------
@@ -26,7 +34,7 @@ namespace System
                     while(keyFl != "1" & keyFl != "2")
                     {
                         NewBanner.EasySaveBanner();
-                        Console.WriteLine("\n1 - english / 2 - français");
+                        Console.WriteLine("\n1 - English / 2 - Français");
                         keyFl = Console.ReadLine();
                         Console.Clear();
                     }
@@ -38,11 +46,11 @@ namespace System
                     {
                         lang = "fr";
                     }
-                    firstLaunch = false; //IL FAUDRA L'ECRIRE DANS LE FICHIER CONFIG EGALEMENT
                 }
                 else //si ce n'est pas le premier lancement on recupère la langue
                 {
-                    lang = "en"; //à recup dans config pour ne pas changer la langue à tout les démarrages !
+                    StreamReader config = new StreamReader(path + "\\Source\\Config.txt"); //ERREUR
+                    lang = config.ReadLine();
                 }
                 //--------------------------------------------------------
                 //Detection du premier lancement dans la boucle principale
@@ -50,102 +58,111 @@ namespace System
                 if (start == true)
                 {
                     //Verification des dossiers
-                    //S'ils n'existent pas alors ils sont créés (en englais)
+                    //S'ils n'existent pas alors ils sont créés (en anglais)
                     if (lang == "en")
                     {
-                        if (!Directory.Exists(path + "path_source"))
+                        if (!Directory.Exists(path + "\\Source"))
                         {
-                            Console.WriteLine($"Directory {path + "path_source"} does not exist!");
-                            Directory.CreateDirectory(path + "path_source");
-                            Console.WriteLine("created...");
+                            Console.WriteLine($"Directory {path + "\\Source"} does not exist!");
+                            Directory.CreateDirectory(path + "\\Source");
+                            StreamWriter config = new StreamWriter(path + "\\Source\\Config.txt");
+                            config.WriteLine(lang);
+                            config.Close();
+                            Console.WriteLine("Done...");
                         }
                         else
                         {
-                            Console.WriteLine($"Directory {path + "path_source"} exists!");
+                            Console.WriteLine($"Directory {path + "\\Source"} exists!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "path_target"))
+                        if (!Directory.Exists(path + "\\Target"))
                         {
-                            Console.WriteLine($"Directory {path + "path_target"} does not exist!");
-                            Directory.CreateDirectory(path + "path_target");
-                            Console.WriteLine("created...");
+                            Console.WriteLine($"Directory {path + "\\Target"} does not exist!");
+                            Directory.CreateDirectory(path + "\\Target");
+                            Console.WriteLine("Done...");
                         }
                         else
                         {
-                            Console.WriteLine($"Directory {path + "path_target"} exists!");
+                            Console.WriteLine($"Directory {path + "\\Target"} exists!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "path_dailylog"))
+                        if (!Directory.Exists(path + "\\Dailylog"))
                         {
-                            Console.WriteLine($"Directory {path + "path_dailylog"} does not exist!");
-                            Directory.CreateDirectory(path + "path_dailylog");
-                            Console.WriteLine("created...");
+                            Console.WriteLine($"Directory {path + "\\Dailylog"} does not exist!");
+                            Directory.CreateDirectory(path + "\\Dailylog");
+                            Console.WriteLine("Done...");
                         }
                         else
                         {
-                            Console.WriteLine($"Directory {path + "path_dailylog"} exists!");
+                            Console.WriteLine($"Directory {path + "\\Dailylog"} exists!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "path_statelog"))
+                        if (!Directory.Exists(path + "\\Statelog"))
                         {
-                            Console.WriteLine($"Directory {path + "path_statelog"} does not exist!");
-                            Directory.CreateDirectory(path + "path_statelog");
-                            Console.WriteLine("created...");
+                            Console.WriteLine($"Directory {path + "\\Statelog"} does not exist!");
+                            Directory.CreateDirectory(path + "\\Statelog");
+                            Console.WriteLine("Done...");
                         }
                         else
                         {
-                            Console.WriteLine($"Directory {path + "path_statelog"} exists!");
+                            Console.WriteLine($"Directory {path + "\\Statelog"} exists!");
                         }
+                        Console.Write("\nPress any key to continue... ");
+                        Console.ReadKey();
                     }
                     //Verification des dossiers
                     //S'ils n'existent pas alors ils sont créés (en englais)
                     else if (lang == "fr")
                     {
-                        if (!Directory.Exists(path + "path_source"))
+                        if (!Directory.Exists(path + "\\Source"))
                         {
-                            Console.WriteLine($"Dossier {path + "path_source"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "path_source");
-                            Console.WriteLine("créer...");
+                            Console.WriteLine($"Dossier {path + "\\Source"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "\\Source");
+                            StreamWriter config = new StreamWriter(path + "\\Source\\Config.txt");
+                            config.WriteLine(lang);
+                            config.Close();
+                            Console.WriteLine("Fait...");
                         }
                         else
                         {
-                            Console.WriteLine($"Dossier {path + "path_source"} éxiste déjà!");
+                            Console.WriteLine($"Dossier {path + "\\Source"} éxiste déjà!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "path_target"))
+                        if (!Directory.Exists(path + "\\Target"))
                         {
-                            Console.WriteLine($"Dossier {path + "path_target"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "path_target");
-                            Console.WriteLine("créer...");
+                            Console.WriteLine($"Dossier {path + "\\Target"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "\\Target");
+                            Console.WriteLine("Fait...");
                         }
                         else
                         {
-                            Console.WriteLine($"Dossier {path + "path_target"} éxiste déjà!");
+                            Console.WriteLine($"Dossier {path + "\\Target"} éxiste déjà!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "path_dailylog"))
+                        if (!Directory.Exists(path + "Dailylog"))
                         {
-                            Console.WriteLine($"Dossier {path + "path_dailylog"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "path_dailylog");
-                            Console.WriteLine("créer...");
+                            Console.WriteLine($"Dossier {path + "\\Dailylog"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "\\Dailylog");
+                            Console.WriteLine("Fait...");
                         }
                         else
                         {
-                            Console.WriteLine($"Dossier {path + "path_dailylog"} éxiste déjà!");
+                            Console.WriteLine($"Dossier {path + "\\Dailylog"} éxiste déjà!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "path_statelog"))
+                        if (!Directory.Exists(path + "\\Statelog"))
                         {
-                            Console.WriteLine($"Dossier {path + "path_statelog"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "path_statelog");
-                            Console.WriteLine("créer...");
+                            Console.WriteLine($"Dossier {path + "\\Statelog"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "\\Statelog");
+                            Console.WriteLine("Fait...");
                         }
                         else
                         {
-                            Console.WriteLine($"Dossier {path + "path_statelog"} éxiste déjà!");
+                            Console.WriteLine($"Dossier {path + "\\Statelog"} éxiste déjà!");
                         }
+                        Console.Write("\nAppuyé sur une touche pour continuer... ");
+                        Console.ReadKey();
                     }
-                    Thread.Sleep(500);
                     Console.Clear();
                     start = false;
                 }
@@ -155,14 +172,36 @@ namespace System
                 //--------------------
                 NewBanner.EasySaveBanner();
                 if (lang == "en")
-                {
-                    Console.WriteLine("\nActual path : " + path);
-                    Console.WriteLine("\n\n1 - Create save\n2 - Show saves\n3 - Manage folders\n4 - Select language\n5 - Close\n");
+                {   
+                    if (path == "Ø")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nActual path : " + path);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nActual path : " + path);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    Console.WriteLine("\n\n1 - Create save\n2 - Show saves\n3 - Manage folders\n4 - Languages\n5 - Close\n");
                 }
                 else if (lang == "fr")
                 {
-                    Console.WriteLine("\nChemin actuel : " + path);
-                    Console.WriteLine("\n\n1 - Create save\n2 - Show saves\n3 - Manage folders\n4 - Select language\n5 - Close\n");
+                    if (path == "Ø")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nChemin actuel : " + path);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nChemin actuel : " + path);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    Console.WriteLine("\n\n1 - Créer une sauvegarde\n2 - Afficher sauvegardes\n3 - Gérer dossiers\n4 - Langues\n5 - Fermer\n");
                 }
                 key = Console.ReadLine();
                 //------------------
@@ -247,99 +286,128 @@ namespace System
                     }
                     else if (keyM == "2") //Supprimer les dossiers
                     {
+                        string choiceDelete = "";
                         if (lang == "en")
                         {
-                            Console.Clear();
-                            if (Directory.Exists(path + "path_source"))
+                            while (choiceDelete != "y" & choiceDelete != "Y" & choiceDelete != "n" & choiceDelete != "N")
                             {
-                                Directory.Delete(path + "path_source");
-                                Console.WriteLine($"Directory {path + "path_source"} deleted!");
+                                Console.Clear();
+                                NewBanner.EasySaveBanner();
+                                Console.WriteLine("\n##### DELETE FOLDERS ? #####\nY/N");
+                                choiceDelete = Console.ReadLine();
+                                if (choiceDelete == "y" | choiceDelete == "Y")
+                                {
+                                     Console.Clear();
+                                     if (Directory.Exists(path + "\\Source"))
+                                     {
+                                         Directory.Delete(path + "\\Source");
+                                         Console.WriteLine($"Directory {path + "\\Source"} deleted!");
+                                     }
+                                     else
+                                     {
+                                         Console.WriteLine("\"Source\" non-existent.");
+                                     }
+                                     Thread.Sleep(500);
+                                     if (Directory.Exists(path + "\\Target"))
+                                     {
+                                         Directory.Delete(path + "\\Target");
+                                         Console.WriteLine($"Directory {path + "\\Target"} deleted!");
+                                     }
+                                     else
+                                     {
+                                         Console.WriteLine("\"Target\" non-existent.");
+                                     }
+                                     Thread.Sleep(500);
+                                     if (Directory.Exists(path + "\\Dailylog"))
+                                     {
+                                         Directory.Delete(path + "\\Dailylog");
+                                         Console.WriteLine($"Directory {path + "\\Dailylog"} deleted!");
+                                     }
+                                     else
+                                     {
+                                         Console.WriteLine("\"Daily log\" non-existent.");
+                                     }
+                                     Thread.Sleep(500);
+                                     if (Directory.Exists(path + "\\Statelog"))
+                                     {
+                                         Directory.Delete(path + "\\Statelog");
+                                         Console.WriteLine($"Directory {path + "\\Statelog"} deleted!");
+                                     }
+                                     else
+                                     {
+                                         Console.WriteLine("\"State log\" non-existent.");
+                                     }
+                                     Thread.Sleep(500);
+                                     path = "Ø";
+                                     Console.Write("\nPress any key to continue... ");
+                                     Console.ReadKey();
+                                }
+                                else if (choiceDelete == "n" & choiceDelete == "N")
+                                {
+                                    return;
+                                }
                             }
-                            else
-                            {
-                                Console.WriteLine("\"Source\" non-existent.");
-                            }
-                            Thread.Sleep(500);
-                            if (Directory.Exists(path + "path_target"))
-                            {
-                                Directory.Delete(path + "path_target");
-                                Console.WriteLine($"Directory {path + "path_target"} deleted!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\"Target\" non-existent.");
-                            }
-                            Thread.Sleep(500);
-                            if (Directory.Exists(path + "path_dailylog"))
-                            {
-                                Directory.Delete(path + "path_dailylog");
-                                Console.WriteLine($"Directory {path + "path_dailylog"} deleted!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\"Daily log\" non-existent.");
-                            }
-                            Thread.Sleep(500);
-                            if (Directory.Exists(path + "path_statelog"))
-                            {
-                                Directory.Delete(path + "path_statelog");
-                                Console.WriteLine($"Directory {path + "path_statelog"} deleted!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\"State log\" non-existent.");
-                            }
-                            Thread.Sleep(500);
-                            path = "Ø";
-                            Console.Write("\nPress any key to continue... ");
-                            Console.ReadLine();
                         }
-                        else if (lang == "fr")
+                        if (lang == "fr")
                         {
-                            Console.Clear();
-                            if (Directory.Exists(path + "path_source"))
+                            while (choiceDelete != "o" & choiceDelete != "O" & choiceDelete != "n" & choiceDelete != "N")
                             {
-                                Directory.Delete(path + "path_source");
-                                Console.WriteLine($"Dossier {path + "path_source"} supprimé!");
+                                Console.Clear();
+                                NewBanner.EasySaveBanner();
+                                Console.WriteLine("\n#####SUPPRIMER DOSSIERS ? #####\nO/N");
+                                choiceDelete = Console.ReadLine();
+                                if (choiceDelete == "o" | choiceDelete == "O")
+                                {
+                                    Console.Clear();
+                                    if (Directory.Exists(path + "\\Source"))
+                                    {
+                                        Directory.Delete(path + "\\Source");
+                                        Console.WriteLine($"Dossier {path + "\\Source"} supprimé!");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\"Source\" inexistant.");
+                                    }
+                                    Thread.Sleep(500);
+                                    if (Directory.Exists(path + "\\Target"))
+                                    {
+                                        Directory.Delete(path + "\\Target");
+                                        Console.WriteLine($"Dossier {path + "\\Target"} supprimé!");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\"Target\" inexistant.");
+                                    }
+                                    Thread.Sleep(500);
+                                    if (Directory.Exists(path + "\\Dailylog"))
+                                    {
+                                        Directory.Delete(path + "\\Dailylog");
+                                        Console.WriteLine($"Dossier {path + "\\Dailylog"} supprimé!");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\"Daily log\" inexistant.");
+                                    }
+                                    Thread.Sleep(500);
+                                    if (Directory.Exists(path + "\\Statelog"))
+                                    {
+                                        Directory.Delete(path + "\\Statelog");
+                                        Console.WriteLine($"Dossier {path + "\\Statelog"} supprimé!");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\"State log\" inexistant.");
+                                    }
+                                    Thread.Sleep(500);
+                                    path = "Ø";
+                                    Console.Write("\nAppuyé sur une touche pour continuer... ");
+                                    Console.ReadKey();
+                                }
+                                else if (choiceDelete == "n" & choiceDelete == "N")
+                                {
+                                    return;
+                                }
                             }
-                            else
-                            {
-                                Console.WriteLine("\"Source\" inexistant.");
-                            }
-                            Thread.Sleep(500);
-                            if (Directory.Exists(path + "path_target"))
-                            {
-                                Directory.Delete(path + "path_target");
-                                Console.WriteLine($"Dossier {path + "path_target"} supprimé!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\"Target\" inexistant.");
-                            }
-                            Thread.Sleep(500);
-                            if (Directory.Exists(path + "path_dailylog"))
-                            {
-                                Directory.Delete(path + "path_dailylog");
-                                Console.WriteLine($"Dossier {path + "path_dailylog"} supprimé!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\"Daily log\" inexistant.");
-                            }
-                            Thread.Sleep(500);
-                            if (Directory.Exists(path + "path_statelog"))
-                            {
-                                Directory.Delete(path + "path_statelog");
-                                Console.WriteLine($"Dossier {path + "path_statelog"} supprimé!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\"State log\" inexistant.");
-                            }
-                            Thread.Sleep(500);
-                            path = "Ø";
-                            Console.Write("\nAppuyé sur une touche pour continuer... ");
-                            Console.ReadLine();
                         }
                     }
                     else if (keyM == "3")
@@ -372,7 +440,7 @@ namespace System
                         Console.Clear();
                         Console.WriteLine("Language : english");
                         Console.Write("\nPress any key to continue... ");
-                        Console.ReadLine();
+                        Console.ReadKey();
                     }
                     else if (keyL == "2")
                     {
@@ -380,7 +448,7 @@ namespace System
                         Console.Clear();
                         Console.WriteLine("Langue : français");
                         Console.Write("\nAppuyé sur une touche pour continuer... ");
-                        Console.ReadLine();
+                        Console.ReadKey();
                     }
                 }
                 else if (key == "5")
@@ -396,7 +464,7 @@ namespace System
         }
         public void EasySaveBanner() //Texte EasySave
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(" _______     ___           _______.____    ____  _______.     ___   ____    ____  _______\n|   ____|   /   \\         /       |\\   \\  /   / /       |    /   \\  \\   \\  /   / |   ____|\n|  |__     /  ^  \\       |   (----` \\   \\/   / |   (----`   /  ^  \\  \\   \\/   /  |  |_\n|   __|   /  /_\\  \\       \\   \\      \\_    _/   \\   \\      /  /_\\  \\  \\      /   |   __|\n|  |____ /  _____  \\  .----)   |       |  | .----)   |    /  _____  \\  \\    /    |  |____\n|_______/__/     \\__\\ |_______/        |__| |_______/    /__/     \\__\\  \\__/     |_______| .V1");
             Console.ForegroundColor = ConsoleColor.Yellow;
         }
