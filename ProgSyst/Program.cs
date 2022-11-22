@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace System
 {
@@ -6,63 +6,153 @@ namespace System
     {
         public static void Main()
         {
+            //----------------------
+            //Définition des valeurs
+            //----------------------
             var NewBanner = new Program();
             bool start = true;
             string key;
-            string lang = "en"; //à recup dans config pour ne pas changer la langue à tout les démarrages !
+            string lang = "";
             string path = Directory.GetCurrentDirectory();
+            bool firstLaunch = true; //à recup dans config pour savoir si c'est le premier demarrage ou non pour choisir la langue
+            //---------------------------------
+            //Lancement de la boucle principale
+            //---------------------------------
             while (true)
             {
+                if (firstLaunch == true) //On détecte si c'est le premier lancement sur la machine pour définir le language
+                {
+                    string keyFl = "0";
+                    while(keyFl != "1" & keyFl != "2")
+                    {
+                        NewBanner.EasySaveBanner();
+                        Console.WriteLine("\n1 - english / 2 - français");
+                        keyFl = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    if (keyFl == "1")
+                    {
+                        lang = "en";
+                    }
+                    if (keyFl == "2")
+                    {
+                        lang = "fr";
+                    }
+                    firstLaunch = false; //IL FAUDRA L'ECRIRE DANS LE FICHIER CONFIG EGALEMENT
+                }
+                else //si ce n'est pas le premier lancement on recupère la langue
+                {
+                    lang = "en"; //à recup dans config pour ne pas changer la langue à tout les démarrages !
+                }
+                //--------------------------------------------------------
+                //Detection du premier lancement dans la boucle principale
+                //--------------------------------------------------------
                 if (start == true)
                 {
-                    if (!Directory.Exists(path + "path_source"))
+                    //Verification des dossiers
+                    //S'ils n'existent pas alors ils sont créés (en englais)
+                    if (lang == "en")
                     {
-                        Console.WriteLine($"Directory {path + "path_source"} does not exist!");
-                        Directory.CreateDirectory(path + "path_source");
-                        Console.WriteLine("created...");
+                        if (!Directory.Exists(path + "path_source"))
+                        {
+                            Console.WriteLine($"Directory {path + "path_source"} does not exist!");
+                            Directory.CreateDirectory(path + "path_source");
+                            Console.WriteLine("created...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Directory {path + "path_source"} exists!");
+                        }
+                        Thread.Sleep(500);
+                        if (!Directory.Exists(path + "path_target"))
+                        {
+                            Console.WriteLine($"Directory {path + "path_target"} does not exist!");
+                            Directory.CreateDirectory(path + "path_target");
+                            Console.WriteLine("created...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Directory {path + "path_target"} exists!");
+                        }
+                        Thread.Sleep(500);
+                        if (!Directory.Exists(path + "path_dailylog"))
+                        {
+                            Console.WriteLine($"Directory {path + "path_dailylog"} does not exist!");
+                            Directory.CreateDirectory(path + "path_dailylog");
+                            Console.WriteLine("created...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Directory {path + "path_dailylog"} exists!");
+                        }
+                        Thread.Sleep(500);
+                        if (!Directory.Exists(path + "path_statelog"))
+                        {
+                            Console.WriteLine($"Directory {path + "path_statelog"} does not exist!");
+                            Directory.CreateDirectory(path + "path_statelog");
+                            Console.WriteLine("created...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Directory {path + "path_statelog"} exists!");
+                        }
                     }
-                    else
+                    //Verification des dossiers
+                    //S'ils n'existent pas alors ils sont créés (en englais)
+                    else if (lang == "fr")
                     {
-                        Console.WriteLine($"Directory {path + "path_source"} exists!");
-                    }
-                    Thread.Sleep(500);
-                    if (!Directory.Exists(path + "path_target"))
-                    {
-                        Console.WriteLine($"Directory {path + "path_target"} does not exist!");
-                        Directory.CreateDirectory(path + "path_target");
-                        Console.WriteLine("created...");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Directory {path + "path_target"} exists!");
-                    }
-                    Thread.Sleep(500);
-                    if (!Directory.Exists(path + "path_dailylog"))
-                    {
-                        Console.WriteLine($"Directory {path + "path_dailylog"} does not exist!");
-                        Directory.CreateDirectory(path + "path_dailylog");
-                        Console.WriteLine("created...");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Directory {path + "path_dailylog"} exists!");
-                    }
-                    Thread.Sleep(500);
-                    if (!Directory.Exists(path + "path_statelog"))
-                    {
-                        Console.WriteLine($"Directory {path + "path_statelog"} does not exist!");
-                        Directory.CreateDirectory(path + "path_statelog");
-                        Console.WriteLine("created...");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Directory {path + "path_statelog"} exists!");
+                        if (!Directory.Exists(path + "path_source"))
+                        {
+                            Console.WriteLine($"Dossier {path + "path_source"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "path_source");
+                            Console.WriteLine("créer...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Dossier {path + "path_source"} éxiste déjà!");
+                        }
+                        Thread.Sleep(500);
+                        if (!Directory.Exists(path + "path_target"))
+                        {
+                            Console.WriteLine($"Dossier {path + "path_target"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "path_target");
+                            Console.WriteLine("créer...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Dossier {path + "path_target"} éxiste déjà!");
+                        }
+                        Thread.Sleep(500);
+                        if (!Directory.Exists(path + "path_dailylog"))
+                        {
+                            Console.WriteLine($"Dossier {path + "path_dailylog"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "path_dailylog");
+                            Console.WriteLine("créer...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Dossier {path + "path_dailylog"} éxiste déjà!");
+                        }
+                        Thread.Sleep(500);
+                        if (!Directory.Exists(path + "path_statelog"))
+                        {
+                            Console.WriteLine($"Dossier {path + "path_statelog"} n'éxiste pas!");
+                            Directory.CreateDirectory(path + "path_statelog");
+                            Console.WriteLine("créer...");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Dossier {path + "path_statelog"} éxiste déjà!");
+                        }
                     }
                     Thread.Sleep(500);
                     Console.Clear();
                     start = false;
                 }
                 Console.Clear();
+                //--------------------
+                //Affichage principale
+                //--------------------
                 NewBanner.EasySaveBanner();
                 if (lang == "en")
                 {
@@ -75,17 +165,20 @@ namespace System
                     Console.WriteLine("\n\n1 - Create save\n2 - Show saves\n3 - Manage folders\n4 - Select language\n5 - Close\n");
                 }
                 key = Console.ReadLine();
-                if (key == "1")
+                //------------------
+                //Detection du choix
+                //------------------
+                if (key == "1") //Création de sauvegarde
                 {
                     Console.Clear();
                     ModelViewSave save = new ModelViewSave();
                 }
-                else if (key == "2")
+                else if (key == "2") //Affichage des sauvegardes
                 {
                     Console.Clear();
                     ModelViewShow show = new ModelViewShow();
                 }
-                else if (key == "3")
+                else if (key == "3") // Management des dossiers
                 {
                     string keyM = "0";
                     while (keyM != "1" & keyM != "2" & keyM != "3")
@@ -95,16 +188,16 @@ namespace System
                         if (lang == "en")
                         {
                             Console.WriteLine("\nSelect an option :");
-                            Console.WriteLine("\n\n1 - Change save path\n2 - Delete folders\n3 - Back");
+                            Console.WriteLine("\n1 - Change save path\n2 - Delete folders\n3 - Back");
                         }
                         else if (lang == "fr")
                         {
                             Console.WriteLine("\nChoisir une option :");
-                            Console.WriteLine("\n\n1 - Changer le chemin de sauvegarde\n2 - Supprimé les dossiers\n3 - Retour");
+                            Console.WriteLine("\n1 - Changer le chemin de sauvegarde\n2 - Supprimé les dossiers\n3 - Retour");
                         }
                         keyM = Console.ReadLine();
                     }
-                    if (keyM == "1")
+                    if (keyM == "1") //Redéfinition du chemin
                     {
                         string NewPath = "";
                         bool errorPath = false;
@@ -152,7 +245,7 @@ namespace System
                             }
                         }
                     }
-                    else if (keyM == "2")
+                    else if (keyM == "2") //Supprimer les dossiers
                     {
                         if (lang == "en")
                         {
@@ -285,7 +378,7 @@ namespace System
                     {
                         lang = "fr";
                         Console.Clear();
-                        Console.WriteLine("Langage : français");
+                        Console.WriteLine("Langue : français");
                         Console.Write("\nAppuyé sur une touche pour continuer... ");
                         Console.ReadLine();
                     }
@@ -301,9 +394,11 @@ namespace System
                 }
             }
         }
-        public void EasySaveBanner()
+        public void EasySaveBanner() //Texte EasySave
         {
-            Console.WriteLine(" _______     ___           _______.____    ____  _______.     ___   ____    ____  _______\n|   ____|   /   \\         /       |\\   \\  /   / /       |    /   \\  \\   \\  /   / |   ____|\n|  |__     /  ^  \\       |   (----` \\   \\/   / |   (----`   /  ^  \\  \\   \\/   /  |  |_\n|   __|   /  /_\\  \\       \\   \\      \\_    _/   \\   \\      /  /_\\  \\  \\      /   |   __|\n|  |____ /  _____  \\  .----)   |       |  | .----)   |    /  _____  \\  \\    /    |  |____\n|_______/__/     \\__\\ |_______/        |__| |_______/    /__/     \\__\\  \\__/     |_______|");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(" _______     ___           _______.____    ____  _______.     ___   ____    ____  _______\n|   ____|   /   \\         /       |\\   \\  /   / /       |    /   \\  \\   \\  /   / |   ____|\n|  |__     /  ^  \\       |   (----` \\   \\/   / |   (----`   /  ^  \\  \\   \\/   /  |  |_\n|   __|   /  /_\\  \\       \\   \\      \\_    _/   \\   \\      /  /_\\  \\  \\      /   |   __|\n|  |____ /  _____  \\  .----)   |       |  | .----)   |    /  _____  \\  \\    /    |  |____\n|_______/__/     \\__\\ |_______/        |__| |_______/    /__/     \\__\\  \\__/     |_______| .V1");
+            Console.ForegroundColor = ConsoleColor.Yellow;
         }
     }
 }
