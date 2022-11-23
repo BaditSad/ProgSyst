@@ -203,12 +203,14 @@ namespace System
                 if (key == "1") //Création de sauvegarde
                 {
                     Console.Clear();
-                    Model save = new ModelSave();
+                    var save = new ModelView();
+                    save.ModelSave();
                 }
                 else if (key == "2") //Affichage des sauvegardes
                 {
                     Console.Clear();
-                    Model show = new ModelShow();
+                    var show = new ModelView();
+                    show.ModelShow();
                 }
                 else if (key == "3") // Management des dossiers
                 {
@@ -365,7 +367,7 @@ namespace System
                             Console.ReadKey();
                         }
                     }
-                    else if (keyM == "3") //Supprimer les dossiers
+                    else if (keyM == "3") //Uninstall
                     {
                         string choiceDelete = "";
                         if (lang == "en")
@@ -416,49 +418,7 @@ namespace System
                         }
                         if (lang == "fr")
                         {
-                            while (choiceDelete != "o" & choiceDelete != "O" & choiceDelete != "n" & choiceDelete != "N")
-                            {
-                                Console.Clear();
-                                NewBanner.EasySaveBanner();
-                                Console.WriteLine("\n#####SUPPRIMER DOSSIERS ? #####\nO/N");
-                                choiceDelete = Console.ReadLine();
-                                if (choiceDelete == "o" | choiceDelete == "O")
-                                {
-                                    Console.Clear();
-                                    if (Directory.Exists(pathConfig + "\\Config"))
-                                    {
-                                        Directory.Delete(pathConfig + "\\Config", true);
-                                    }
-                                    Thread.Sleep(500);
-                                    if (Directory.Exists(pathFolder + "\\Dailylog"))
-                                    {
-                                        Directory.Delete(pathFolder + "\\Dailylog", true);
-                                        Console.WriteLine($"Dossier {pathFolder + "\\Dailylog"} supprimé!");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\"Daily log\" inexistant.");
-                                    }
-                                    Thread.Sleep(500);
-                                    if (Directory.Exists(pathFolder + "\\Statelog"))
-                                    {
-                                        Directory.Delete(pathFolder + "\\Statelog", true);
-                                        Console.WriteLine($"Dossier {pathFolder + "\\Statelog"} supprimé!");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\"State log\" inexistant.");
-                                    }
-                                    Thread.Sleep(500);
-                                    pathFolder = "Ø";
-                                    Console.Write("\nAppuyé sur une touche pour continuer... ");
-                                    Console.ReadKey();
-                                }
-                                else if (choiceDelete == "n" & choiceDelete == "N")
-                                {
-                                    return;
-                                }
-                            }
+                            
                         }
                     }
                     else if (keyM == "4")
@@ -476,11 +436,6 @@ namespace System
                     continue;
                 }
             }
-        }
-        public void MenuPrincipale()
-        {
-            var Start = new Model();
-            Start.Menu_P();
         }
     }
 }
