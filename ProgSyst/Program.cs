@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace System
 {
@@ -9,19 +10,35 @@ namespace System
             //----------------------
             //Définition des valeurs
             //----------------------
+            Console.ForegroundColor = ConsoleColor.Yellow;
             var NewBanner = new Program();
             bool start = true;
             string key;
             string lang = "";
             bool firstLaunch;
-            string path = Directory.GetCurrentDirectory();
-            if (!File.Exists(path + "\\Source\\Config.txt"))
+            string pathConfig = Directory.GetCurrentDirectory();
+            string pathFolder;
+            if (!Directory.Exists(pathConfig + "\\Config"))
             {
                 firstLaunch = true;
             }
             else
             {
                 firstLaunch = false;
+            }
+            if (!Directory.Exists(pathConfig + "\\Config"))
+            {
+                Directory.CreateDirectory(pathConfig + "\\Config");
+                pathFolder = pathConfig;
+                StreamWriter path_folder = new StreamWriter(pathConfig + "\\Config\\Path.txt");
+                path_folder.WriteLine(pathFolder);
+                path_folder.Close();
+            }
+            else
+            {
+                StreamReader path_folder = new StreamReader(pathConfig + "\\Config\\Path.txt");
+                pathFolder = path_folder.ReadLine();
+                path_folder.Close();
             }
             //---------------------------------
             //Lancement de la boucle principale
@@ -41,16 +58,24 @@ namespace System
                     if (keyFl == "1")
                     {
                         lang = "en";
+                        StreamWriter config_lang = new StreamWriter(pathConfig + "\\Config\\Lang.txt");
+                        config_lang.WriteLine(lang);
+                        config_lang.Close();
                     }
                     if (keyFl == "2")
                     {
                         lang = "fr";
+                        StreamWriter config_lang = new StreamWriter(pathConfig + "\\Config\\Lang.txt");
+                        config_lang.WriteLine(lang);
+                        config_lang.Close();
                     }
+                    firstLaunch = false;
                 }
                 else //si ce n'est pas le premier lancement on recupère la langue
                 {
-                    StreamReader config = new StreamReader(path + "\\Source\\Config.txt"); //ERREUR
-                    lang = config.ReadLine();
+                    StreamReader config_lang = new StreamReader(pathConfig + "\\Config\\Lang.txt");
+                    lang = config_lang.ReadLine();
+                    config_lang.Close();
                 }
                 //--------------------------------------------------------
                 //Detection du premier lancement dans la boucle principale
@@ -61,51 +86,37 @@ namespace System
                     //S'ils n'existent pas alors ils sont créés (en anglais)
                     if (lang == "en")
                     {
-                        if (!Directory.Exists(path + "\\Source"))
+                        if (!Directory.Exists(pathConfig + "\\Config"))
                         {
-                            Console.WriteLine($"Directory {path + "\\Source"} does not exist!");
-                            Directory.CreateDirectory(path + "\\Source");
-                            StreamWriter config = new StreamWriter(path + "\\Source\\Config.txt");
-                            config.WriteLine(lang);
-                            config.Close();
-                            Console.WriteLine("Done...");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Directory {path + "\\Source"} exists!");
+                            Directory.CreateDirectory(pathConfig + "\\Config");
+                            StreamWriter config_lang = new StreamWriter(pathConfig + "\\Config\\Lang.txt");
+                            config_lang.WriteLine(lang);
+                            config_lang.Close();
+                            StreamWriter config_path = new StreamWriter(pathConfig + "\\Config\\Path.txt");
+                            config_lang.WriteLine(pathFolder);
+                            config_lang.Close();
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "\\Target"))
+                        if (!Directory.Exists(pathConfig + "\\Dailylog"))
                         {
-                            Console.WriteLine($"Directory {path + "\\Target"} does not exist!");
-                            Directory.CreateDirectory(path + "\\Target");
+                            Console.WriteLine($"Directory Dailylog does not exist!");
+                            Directory.CreateDirectory(pathConfig + "\\Dailylog");
                             Console.WriteLine("Done...");
                         }
                         else
                         {
-                            Console.WriteLine($"Directory {path + "\\Target"} exists!");
+                            Console.WriteLine($"Directory Dailylog exists!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "\\Dailylog"))
+                        if (!Directory.Exists(pathConfig + "\\Statelog"))
                         {
-                            Console.WriteLine($"Directory {path + "\\Dailylog"} does not exist!");
-                            Directory.CreateDirectory(path + "\\Dailylog");
+                            Console.WriteLine($"Directory Statelog does not exist!");
+                            Directory.CreateDirectory(pathConfig + "\\Statelog");
                             Console.WriteLine("Done...");
                         }
                         else
                         {
-                            Console.WriteLine($"Directory {path + "\\Dailylog"} exists!");
-                        }
-                        Thread.Sleep(500);
-                        if (!Directory.Exists(path + "\\Statelog"))
-                        {
-                            Console.WriteLine($"Directory {path + "\\Statelog"} does not exist!");
-                            Directory.CreateDirectory(path + "\\Statelog");
-                            Console.WriteLine("Done...");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Directory {path + "\\Statelog"} exists!");
+                            Console.WriteLine($"Directory Statelog exists!");
                         }
                         Console.Write("\nPress any key to continue... ");
                         Console.ReadKey();
@@ -114,51 +125,37 @@ namespace System
                     //S'ils n'existent pas alors ils sont créés (en englais)
                     else if (lang == "fr")
                     {
-                        if (!Directory.Exists(path + "\\Source"))
+                        if (!Directory.Exists(pathConfig + "\\Config"))
                         {
-                            Console.WriteLine($"Dossier {path + "\\Source"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "\\Source");
-                            StreamWriter config = new StreamWriter(path + "\\Source\\Config.txt");
-                            config.WriteLine(lang);
-                            config.Close();
-                            Console.WriteLine("Fait...");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Dossier {path + "\\Source"} éxiste déjà!");
+                            Directory.CreateDirectory(pathConfig + "\\Config");
+                            StreamWriter config_lang = new StreamWriter(pathConfig + "\\Config\\Lang.txt");
+                            config_lang.WriteLine(lang);
+                            config_lang.Close();
+                            StreamWriter config_path = new StreamWriter(pathConfig + "\\Config\\Path.txt");
+                            config_lang.WriteLine(pathFolder);
+                            config_lang.Close();
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "\\Target"))
+                        if (!Directory.Exists(pathConfig + "\\Dailylog"))
                         {
-                            Console.WriteLine($"Dossier {path + "\\Target"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "\\Target");
+                            Console.WriteLine($"Dossier Dailylog n'éxiste pas!");
+                            Directory.CreateDirectory(pathConfig + "\\Dailylog");
                             Console.WriteLine("Fait...");
                         }
                         else
                         {
-                            Console.WriteLine($"Dossier {path + "\\Target"} éxiste déjà!");
+                            Console.WriteLine($"Dossier Dailylog éxiste déjà!");
                         }
                         Thread.Sleep(500);
-                        if (!Directory.Exists(path + "Dailylog"))
+                        if (!Directory.Exists(pathConfig + "\\Statelog"))
                         {
-                            Console.WriteLine($"Dossier {path + "\\Dailylog"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "\\Dailylog");
+                            Console.WriteLine($"Dossier Statelog n'éxiste pas!");
+                            Directory.CreateDirectory(pathConfig + "\\Statelog");
                             Console.WriteLine("Fait...");
                         }
                         else
                         {
-                            Console.WriteLine($"Dossier {path + "\\Dailylog"} éxiste déjà!");
-                        }
-                        Thread.Sleep(500);
-                        if (!Directory.Exists(path + "\\Statelog"))
-                        {
-                            Console.WriteLine($"Dossier {path + "\\Statelog"} n'éxiste pas!");
-                            Directory.CreateDirectory(path + "\\Statelog");
-                            Console.WriteLine("Fait...");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Dossier {path + "\\Statelog"} éxiste déjà!");
+                            Console.WriteLine($"Dossier Statelog éxiste déjà!");
                         }
                         Console.Write("\nAppuyé sur une touche pour continuer... ");
                         Console.ReadKey();
@@ -173,35 +170,35 @@ namespace System
                 NewBanner.EasySaveBanner();
                 if (lang == "en")
                 {   
-                    if (path == "Ø")
+                    if (pathFolder == "Ø")
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nActual path : " + path);
+                        Console.WriteLine("\nDefault target path : " + pathFolder);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nActual path : " + path);
+                        Console.WriteLine("\nDefault target path : " + pathFolder);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     }
-                    Console.WriteLine("\n\n1 - Create save\n2 - Show saves\n3 - Manage folders\n4 - Languages\n5 - Close\n");
+                    Console.WriteLine("\n\n1 - Create save\n2 - Show saves\n3 - Configuration\n4 - Close\n");
                 }
                 else if (lang == "fr")
                 {
-                    if (path == "Ø")
+                    if (pathFolder == "Ø")
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nChemin actuel : " + path);
+                        Console.WriteLine("\nChemin cible par défaut : " + pathFolder);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nChemin actuel : " + path);
+                        Console.WriteLine("\nChemin cible par défaut : " + pathFolder);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     }
-                    Console.WriteLine("\n\n1 - Créer une sauvegarde\n2 - Afficher sauvegardes\n3 - Gérer dossiers\n4 - Langues\n5 - Fermer\n");
+                    Console.WriteLine("\n\n1 - Créer une sauvegarde\n2 - Afficher sauvegardes\n3 - Configuration\n4 - Fermer\n");
                 }
                 key = Console.ReadLine();
                 //------------------
@@ -220,19 +217,43 @@ namespace System
                 else if (key == "3") // Management des dossiers
                 {
                     string keyM = "0";
-                    while (keyM != "1" & keyM != "2" & keyM != "3")
+                    while (keyM != "1" & keyM != "2" & keyM != "3" & keyM != "4")
                     {
                         Console.Clear();
                         NewBanner.EasySaveBanner();
                         if (lang == "en")
                         {
+                            if (pathFolder == "Ø")
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\nDefault target path : " + pathFolder);
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nDefault target path : " + pathFolder);
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                            }
                             Console.WriteLine("\nSelect an option :");
-                            Console.WriteLine("\n1 - Change save path\n2 - Delete folders\n3 - Back");
+                            Console.WriteLine("\n1 - Default save path\n2 - Language\n3 - Uninstall\n4 - Back");
                         }
                         else if (lang == "fr")
                         {
+                            if (pathFolder == "Ø")
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\nChemin cible par défaut : " + pathFolder);
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nChemin cible par défaut : " + pathFolder);
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                            }
                             Console.WriteLine("\nChoisir une option :");
-                            Console.WriteLine("\n1 - Changer le chemin de sauvegarde\n2 - Supprimé les dossiers\n3 - Retour");
+                            Console.WriteLine("\n1 - Chemin de sauvegarde par défaut\n2 - Language\n3 - Désinstaller\n4 - Retour");
                         }
                         keyM = Console.ReadLine();
                     }
@@ -240,23 +261,33 @@ namespace System
                     {
                         string NewPath = "";
                         bool errorPath = false;
-                        while (NewPath == "exit" | NewPath == "quitter")
+                        while (true)
                         {
                             Console.Clear();
                             NewBanner.EasySaveBanner();
                             if (lang == "en")
                             {
                                 Console.WriteLine("\nWrite \"exit\" to close.\n------------------------------\n");
-                                Console.WriteLine("\nActual path : " + path + "\n");
-                                if (errorPath = true)
+                                Console.WriteLine("\nActual path : " + pathFolder + "\n");
+                                if (errorPath == true)
                                 {
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("ERROR path !");
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
                                 }
                                 Console.WriteLine("New path : ");
                                 NewPath = Console.ReadLine();
+                                if (NewPath == "exit")
+                                {
+                                    break;
+                                }
                                 if (Directory.Exists(NewPath))
                                 {
-                                    path = NewPath;
+                                    pathFolder = NewPath;
+                                    StreamWriter path_folder = new StreamWriter(pathConfig + "\\Config\\Path.txt");
+                                    path_folder.WriteLine(pathFolder);
+                                    path_folder.Close();
+                                    break;
                                 }
                                 else
                                 {
@@ -265,17 +296,27 @@ namespace System
                             }
                             else if (lang == "fr")
                             {
-                                Console.WriteLine("\nécrire \"quitter\" pour fermer.\n------------------------------\n");
-                                Console.WriteLine("\nChemin actuel : " + path + "\n");
-                                if (errorPath = true)
+                                Console.WriteLine("\nécrire \"exit\" pour fermer.\n------------------------------\n");
+                                Console.WriteLine("\nChemin actuel : " + pathFolder + "\n");
+                                if (errorPath == true)
                                 {
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("ERREUR chemin !");
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
                                 }
                                 Console.WriteLine("Nouveau chemin : ");
                                 NewPath = Console.ReadLine();
+                                if (NewPath == "exit")
+                                {
+                                    break;
+                                }
                                 if (Directory.Exists(NewPath))
                                 {
-                                    path = NewPath;
+                                    pathFolder = NewPath;
+                                    StreamWriter path_folder = new StreamWriter(pathConfig + "\\Config\\Path.txt");
+                                    path_folder.WriteLine(pathFolder);
+                                    path_folder.Close();
+                                    break;
                                 }
                                 else
                                 {
@@ -284,7 +325,51 @@ namespace System
                             }
                         }
                     }
-                    else if (keyM == "2") //Supprimer les dossiers
+                    else if (keyM == "2")
+                    {
+                        string keyL = "0";
+                        while (keyL != "1" & keyL != "2")
+                        {
+                            Console.Clear();
+                            NewBanner.EasySaveBanner();
+                            if (lang == "en")
+                            {
+                                Console.WriteLine("\nSelect language :");
+                                Console.WriteLine("\n\n1 - English (active)\n2 - French\n");
+                            }
+                            else if (lang == "fr")
+                            {
+                                Console.WriteLine("\nChoisir une langue :");
+                                Console.WriteLine("\n\n1 - Anglais\n2 - Français (actif)\n");
+                            }
+                            keyL = Console.ReadLine();
+                        }
+                        if (keyL == "1")
+                        {
+                            lang = "en";
+                            Console.Clear();
+                            File.Delete(pathConfig + "\\Config\\Lang.txt"); //ERREUR
+                            StreamWriter config_lang = new StreamWriter(pathConfig + "\\Config\\Lang.txt");
+                            config_lang.WriteLine(lang);
+                            config_lang.Close();
+                            Console.WriteLine("Language : english");
+                            Console.Write("\nPress any key to continue... ");
+                            Console.ReadKey();
+                        }
+                        else if (keyL == "2")
+                        {
+                            lang = "fr";
+                            Console.Clear();
+                            File.Delete(pathConfig + "\\Config\\Lang.txt"); //ERREUR
+                            StreamWriter config_lang = new StreamWriter(pathConfig + "\\Config\\Lang.txt");
+                            config_lang.WriteLine(lang);
+                            config_lang.Close();
+                            Console.WriteLine("Langue : français");
+                            Console.Write("\nAppuyé sur une touche pour continuer... ");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (keyM == "3") //Supprimer les dossiers
                     {
                         string choiceDelete = "";
                         if (lang == "en")
@@ -298,47 +383,32 @@ namespace System
                                 if (choiceDelete == "y" | choiceDelete == "Y")
                                 {
                                      Console.Clear();
-                                     if (Directory.Exists(path + "\\Source"))
+                                     if (Directory.Exists(pathConfig + "\\Config"))
                                      {
-                                         Directory.Delete(path + "\\Source");
-                                         Console.WriteLine($"Directory {path + "\\Source"} deleted!");
-                                     }
-                                     else
-                                     {
-                                         Console.WriteLine("\"Source\" non-existent.");
+                                         Directory.Delete(pathConfig + "\\Config",true);
                                      }
                                      Thread.Sleep(500);
-                                     if (Directory.Exists(path + "\\Target"))
+                                     if (Directory.Exists(pathFolder + "\\Dailylog"))
                                      {
-                                         Directory.Delete(path + "\\Target");
-                                         Console.WriteLine($"Directory {path + "\\Target"} deleted!");
-                                     }
-                                     else
-                                     {
-                                         Console.WriteLine("\"Target\" non-existent.");
-                                     }
-                                     Thread.Sleep(500);
-                                     if (Directory.Exists(path + "\\Dailylog"))
-                                     {
-                                         Directory.Delete(path + "\\Dailylog");
-                                         Console.WriteLine($"Directory {path + "\\Dailylog"} deleted!");
+                                         Directory.Delete(pathFolder + "\\Dailylog", true);
+                                         Console.WriteLine($"Directory {pathFolder + "\\Dailylog"} deleted!");
                                      }
                                      else
                                      {
                                          Console.WriteLine("\"Daily log\" non-existent.");
                                      }
                                      Thread.Sleep(500);
-                                     if (Directory.Exists(path + "\\Statelog"))
+                                     if (Directory.Exists(pathFolder + "\\Statelog"))
                                      {
-                                         Directory.Delete(path + "\\Statelog");
-                                         Console.WriteLine($"Directory {path + "\\Statelog"} deleted!");
+                                         Directory.Delete(pathFolder + "\\Statelog", true);
+                                         Console.WriteLine($"Directory {pathFolder + "\\Statelog"} deleted!");
                                      }
                                      else
                                      {
                                          Console.WriteLine("\"State log\" non-existent.");
                                      }
                                      Thread.Sleep(500);
-                                     path = "Ø";
+                                     pathFolder = "Ø";
                                      Console.Write("\nPress any key to continue... ");
                                      Console.ReadKey();
                                 }
@@ -359,47 +429,32 @@ namespace System
                                 if (choiceDelete == "o" | choiceDelete == "O")
                                 {
                                     Console.Clear();
-                                    if (Directory.Exists(path + "\\Source"))
+                                    if (Directory.Exists(pathConfig + "\\Config"))
                                     {
-                                        Directory.Delete(path + "\\Source");
-                                        Console.WriteLine($"Dossier {path + "\\Source"} supprimé!");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\"Source\" inexistant.");
+                                        Directory.Delete(pathConfig + "\\Config", true);
                                     }
                                     Thread.Sleep(500);
-                                    if (Directory.Exists(path + "\\Target"))
+                                    if (Directory.Exists(pathFolder + "\\Dailylog"))
                                     {
-                                        Directory.Delete(path + "\\Target");
-                                        Console.WriteLine($"Dossier {path + "\\Target"} supprimé!");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\"Target\" inexistant.");
-                                    }
-                                    Thread.Sleep(500);
-                                    if (Directory.Exists(path + "\\Dailylog"))
-                                    {
-                                        Directory.Delete(path + "\\Dailylog");
-                                        Console.WriteLine($"Dossier {path + "\\Dailylog"} supprimé!");
+                                        Directory.Delete(pathFolder + "\\Dailylog",true);
+                                        Console.WriteLine($"Dossier {pathFolder + "\\Dailylog"} supprimé!");
                                     }
                                     else
                                     {
                                         Console.WriteLine("\"Daily log\" inexistant.");
                                     }
                                     Thread.Sleep(500);
-                                    if (Directory.Exists(path + "\\Statelog"))
+                                    if (Directory.Exists(pathFolder + "\\Statelog"))
                                     {
-                                        Directory.Delete(path + "\\Statelog");
-                                        Console.WriteLine($"Dossier {path + "\\Statelog"} supprimé!");
+                                        Directory.Delete(pathFolder + "\\Statelog", true);
+                                        Console.WriteLine($"Dossier {pathFolder + "\\Statelog"} supprimé!");
                                     }
                                     else
                                     {
                                         Console.WriteLine("\"State log\" inexistant.");
                                     }
                                     Thread.Sleep(500);
-                                    path = "Ø";
+                                    pathFolder = "Ø";
                                     Console.Write("\nAppuyé sur une touche pour continuer... ");
                                     Console.ReadKey();
                                 }
@@ -410,62 +465,27 @@ namespace System
                             }
                         }
                     }
-                    else if (keyM == "3")
+                    else if (keyM == "4")
                     {
                         continue;
                     }
                 }
                 else if (key == "4")
                 {
-                    string keyL = "0";
-                    while (keyL != "1" & keyL != "2")
-                    {
-                        Console.Clear();
-                        NewBanner.EasySaveBanner();
-                        if (lang == "en")
-                        {
-                            Console.WriteLine("\nSelect language :");
-                            Console.WriteLine("\n\n1 - English (active)\n2 - French\n");
-                        }
-                        else if (lang == "fr")
-                        {
-                            Console.WriteLine("\nChoisir une langue :");
-                            Console.WriteLine("\n\n1 - Anglais\n2 - Français (actif)\n");
-                        }
-                        keyL = Console.ReadLine();
-                    }
-                    if (keyL == "1")
-                    {
-                        lang = "en";
-                        Console.Clear();
-                        Console.WriteLine("Language : english");
-                        Console.Write("\nPress any key to continue... ");
-                        Console.ReadKey();
-                    }
-                    else if (keyL == "2")
-                    {
-                        lang = "fr";
-                        Console.Clear();
-                        Console.WriteLine("Langue : français");
-                        Console.Write("\nAppuyé sur une touche pour continuer... ");
-                        Console.ReadKey();
-                    }
-                }
-                else if (key == "5")
-                {
                     Environment.Exit(0);
                 }
                 else
                 {
                     Console.Clear();
-                    return;
+                    continue;
                 }
             }
         }
         public void EasySaveBanner() //Texte EasySave
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(" _______     ___           _______.____    ____  _______.     ___   ____    ____  _______\n|   ____|   /   \\         /       |\\   \\  /   / /       |    /   \\  \\   \\  /   / |   ____|\n|  |__     /  ^  \\       |   (----` \\   \\/   / |   (----`   /  ^  \\  \\   \\/   /  |  |_\n|   __|   /  /_\\  \\       \\   \\      \\_    _/   \\   \\      /  /_\\  \\  \\      /   |   __|\n|  |____ /  _____  \\  .----)   |       |  | .----)   |    /  _____  \\  \\    /    |  |____\n|_______/__/     \\__\\ |_______/        |__| |_______/    /__/     \\__\\  \\__/     |_______| .V1");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            
+            Console.WriteLine(" \r\n███████╗░█████╗░░██████╗██╗░░░██╗░██████╗░█████╗░██╗░░░██╗███████╗\r\n██╔════╝██╔══██╗██╔════╝╚██╗░██╔╝██╔════╝██╔══██╗██║░░░██║██╔════╝\r\n█████╗░░███████║╚█████╗░░╚████╔╝░╚█████╗░███████║╚██╗░██╔╝█████╗░░\r\n██╔══╝░░██╔══██║░╚═══██╗░░╚██╔╝░░░╚═══██╗██╔══██║░╚████╔╝░██╔══╝░░\r\n███████╗██║░░██║██████╔╝░░░██║░░░██████╔╝██║░░██║░░╚██╔╝░░███████╗\r\n╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝ .V1");
             Console.ForegroundColor = ConsoleColor.Yellow;
         }
     }
