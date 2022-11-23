@@ -11,7 +11,7 @@ namespace System
             //Définition des valeurs
             //----------------------
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var NewBanner = new Program();
+            var NewBanner = new Banner();
             bool start = true;
             string key;
             string lang = "";
@@ -480,13 +480,6 @@ namespace System
                     continue;
                 }
             }
-        }
-        public void EasySaveBanner() //Texte EasySave
-        {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            
-            Console.WriteLine(" \r\n███████╗░█████╗░░██████╗██╗░░░██╗░██████╗░█████╗░██╗░░░██╗███████╗\r\n██╔════╝██╔══██╗██╔════╝╚██╗░██╔╝██╔════╝██╔══██╗██║░░░██║██╔════╝\r\n█████╗░░███████║╚█████╗░░╚████╔╝░╚█████╗░███████║╚██╗░██╔╝█████╗░░\r\n██╔══╝░░██╔══██║░╚═══██╗░░╚██╔╝░░░╚═══██╗██╔══██║░╚████╔╝░██╔══╝░░\r\n███████╗██║░░██║██████╔╝░░░██║░░░██████╔╝██║░░██║░░╚██╔╝░░███████╗\r\n╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝ .V1");
-            Console.ForegroundColor = ConsoleColor.Yellow;
         }
     }
 }
