@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace System
 {
-    class Model
+    class Uninstall
     {
         string choiceDelete = "";
         public void Uninstall_En()
