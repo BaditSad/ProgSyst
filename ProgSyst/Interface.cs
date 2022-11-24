@@ -4,6 +4,9 @@ namespace System
 {
     class Interface
     {
+
+        private static ModelView modelView = new ModelView();
+
         public void MainLaunch()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -62,15 +65,11 @@ namespace System
                 //------------------
                 if (key == "1") //Création de sauvegarde
                 {
-                    Console.Clear();
-                    var save = new ModelView();
-                    save.ModelSave();
+                    modelView.ModelSave(lang);
                 }
                 else if (key == "2") //Affichage des sauvegardes
                 {
-                    Console.Clear();
-                    var show = new ModelView();
-                    show.ModelShow();
+                    modelView.ModelShow(lang);
                 }
                 else if (key == "3") // Configuration
                 {
