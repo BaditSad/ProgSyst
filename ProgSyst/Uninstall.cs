@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace System
+namespace EasySave
 {
     class Uninstall
     {
@@ -11,6 +11,7 @@ namespace System
             while (choiceDelete != "y" & choiceDelete != "Y" & choiceDelete != "n" & choiceDelete != "N")
             {
                 Console.Clear();
+                var NewBanner = new Banner();
                 NewBanner.EasySaveBanner();
                 Console.WriteLine("\n##### UNINSTALL ? #####\nY/N");
                 choiceDelete = Console.ReadLine();
@@ -57,6 +58,7 @@ namespace System
             while (choiceDelete != "o" & choiceDelete != "O" & choiceDelete != "n" & choiceDelete != "N")
             {
                 Console.Clear();
+                var NewBanner = new Banner();
                 NewBanner.EasySaveBanner();
                 Console.WriteLine("\n##### DESINSTALLER ? #####\nO/N");
                 choiceDelete = Console.ReadLine();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace System
+namespace EasySave
 {
     class ModelView
     {
@@ -23,14 +23,14 @@ namespace System
             var FL_Lang = new Language();
             FL_Lang.FirstLaunch();
         }
-        public void Menu()
+        public void Menu(string lang)
         {
             if (lang == "en")
             {
                 var Menu_LangEn = new Menu();
                 Menu_LangEn.Menu_En();
             }
-            else if (lang = "fr")
+            else if (lang == "fr")
             {
                 var Menu_LangFr = new Menu();
                 Menu_LangFr.Menu_Fr();

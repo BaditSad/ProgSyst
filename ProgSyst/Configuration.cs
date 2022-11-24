@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace System
+namespace EasySave
 {
     class Configuration
     {
@@ -11,6 +11,7 @@ namespace System
             while (keyM != "1" & keyM != "2" & keyM != "3" & keyM != "4")
             {
                 Console.Clear();
+                var NewBanner = new Banner();
                 NewBanner.EasySaveBanner();
                 if (pathFolder == "Ø")
                 {
@@ -34,6 +35,7 @@ namespace System
             while (keyM != "1" & keyM != "2" & keyM != "3" & keyM != "4")
             {
                 Console.Clear();
+                var NewBanner = new Banner();
                 NewBanner.EasySaveBanner();
                 if (pathFolder == "Ø")
                 {

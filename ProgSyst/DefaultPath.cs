@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace System
+namespace EasySave
 {
     class DefaultPath
     {
@@ -12,6 +12,7 @@ namespace System
             while (true)
             {
                 Console.Clear();
+                var NewBanner = new Banner();
                 NewBanner.EasySaveBanner();                    Console.WriteLine("\nWrite \"exit\" to close.\n------------------------------\n");
                 Console.WriteLine("\nActual path : " + pathFolder + "\n");
                 if (errorPath == true)
@@ -44,6 +45,8 @@ namespace System
         {
             while (true)
             {
+                Console.Clear();
+                var NewBanner = new Banner();
                 Console.WriteLine("\nécrire \"exit\" pour fermer.\n------------------------------\n");
                 Console.WriteLine("\nChemin actuel : " + pathFolder + "\n");
                 if (errorPath == true)
