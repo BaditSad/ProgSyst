@@ -1,3 +1,4 @@
+using EasySave;
 using System;
 using System.IO;
 
@@ -10,9 +11,9 @@ namespace System
 
         public void QuerySaves(string lang)
         {
-            Banner banner = new Banner();
+            var NewBanner = new Banner();
             Console.Clear();
-            banner.EasySaveBanner();
+            NewBanner.EasySaveBanner();
 
             if (lang == "en")
             {
@@ -72,14 +73,14 @@ namespace System
 
         public void CreateSave(string lang)
         {
-            Banner banner = new Banner();
+            var NewBanner = new Banner();
             string saveName = "";
             string targetFile = targetFolder + "\\" + saveName;
 
             while (true)
             {
                 Console.Clear();
-                banner.EasySaveBanner();
+                NewBanner.EasySaveBanner();
 
                 if (lang == "en")
                 {
