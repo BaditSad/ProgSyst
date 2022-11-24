@@ -5,6 +5,9 @@ namespace EasySave
 {
     class ModelView
     {
+
+        private static Save_Show save_Show = new Save_Show();
+
         public void FileChecker()
         {
             if (lang == "en")
@@ -89,13 +92,13 @@ namespace EasySave
             }
 
         }
-        public void ModelSave()
+        public void ModelSave(string lang)
         {
-
+            save_Show.CreateSave(lang);
         }
-        public void ModelShow()
+        public void ModelShow(string lang)
         {
-
+            save_Show.QuerySaves(lang);
         }
     }
 }
