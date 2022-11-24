@@ -5,10 +5,10 @@ namespace EasySave
 {
     public class Program
     {
-        public static void Main()
+        static void Main()
         {
-            var Start = new Interface();
-            Start.MainLaunch();
+            Interface PgrmSyst = new Interface();
+            PgrmSyst.MainLaunch();
         }
     }
 }

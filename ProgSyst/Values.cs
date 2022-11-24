@@ -4,18 +4,35 @@ namespace EasySave
 {
     class Values
     {
-        string key;
-        string lang;
-        bool firstLaunch;
-        string pathConfig;
-        string pathFolder;
-        public Values(string v_key, string v_lang, bool v_firstLaunch, string v_pathConfig, string v_pathFolder)
+        public string Key
         {
-            this.key = v_key;
-            this.lang = v_lang;
-            this.firstLaunch = v_firstLaunch;
-            this.pathConfig = v_pathConfig;
-            this.pathFolder = v_pathFolder;
+            get; set;
         }
+        public string KeyM
+        {
+            get; set;
+        }
+        public string Lang
+        {
+            get; set;
+        }
+        public bool FirstLaunch
+        {
+            get; set;
+        }
+        public bool Start
+        {
+            get; set;
+        }
+        public string PathConfig
+        {
+            get; set;
+        }
+        public string PathFolder
+        {
+            get; set;
+        }
+        private Values() { }
+        public static readonly Values Instance = new Values();
     }
 }

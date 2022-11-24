@@ -6,16 +6,19 @@ namespace EasySave
     class ModelView
     {
 
-        private static Save_Show save_Show = new Save_Show();
-
+        public void FolderChecker()
+        {
+            var CheckF = new FolderChecker();
+            CheckF.CheckFolders();
+        }
         public void FileChecker()
         {
-            if (lang == "en")
+            if (Values.Instance.Lang == "en")
             {
                 var Checker_LangEn = new FileChecker();
                 Checker_LangEn.Checker_En();
             }
-            else if (lang = "fr")
+            else if (Values.Instance.Lang == "fr")
             {
                 var Checker_LangFr = new FileChecker();
                 Checker_LangFr.Checker_Fr();
@@ -26,14 +29,14 @@ namespace EasySave
             var FL_Lang = new Language();
             FL_Lang.FirstLaunch();
         }
-        public void Menu(string lang)
+        public void Menu()
         {
-            if (lang == "en")
+            if (Values.Instance.Lang == "en")
             {
                 var Menu_LangEn = new Menu();
                 Menu_LangEn.Menu_En();
             }
-            else if (lang == "fr")
+            else if (Values.Instance.Lang == "fr")
             {
                 var Menu_LangFr = new Menu();
                 Menu_LangFr.Menu_Fr();
@@ -41,12 +44,12 @@ namespace EasySave
         }
         public void Configuration()
         {
-            if (lang == "en")
+            if (Values.Instance.Lang == "en")
             {
                 var Config_LangEn = new Configuration();
                 Config_LangEn.Config_En();
             }
-            else if (lang = "fr")
+            else if (Values.Instance.Lang == "fr")
             {
                 var Config_LangFr = new Configuration();
                 Config_LangFr.Config_Fr();
@@ -54,12 +57,12 @@ namespace EasySave
         }
         public void PathDefault()
         {
-            if (lang == "en")
+            if (Values.Instance.Lang == "en")
             {
                 var Path_LangEn = new DefaultPath();
                 Path_LangEn.Path_En();
             }
-            else if (lang = "fr")
+            else if (Values.Instance.Lang == "fr")
             {
                 var Path_LangFr = new DefaultPath();
                 Path_LangFr.Path_Fr();
@@ -67,12 +70,12 @@ namespace EasySave
         }
         public void Language()
         {
-            if (lang == "en")
+            if (Values.Instance.Lang == "en")
             {
                 var Language_LangEn = new Language();
                 Language_LangEn.Language_En();
             }
-            else if (lang = "fr")
+            else if (Values.Instance.Lang == "fr")
             {
                 var Language_LangFr = new Language();
                 Language_LangFr.Language_Fr();
@@ -80,25 +83,43 @@ namespace EasySave
         }
         public void Uninstall()
         {
-            if (lang == "en")
+            if (Values.Instance.Lang == "en")
             {
                 var Uninstall_LangEn = new Uninstall();
                 Uninstall_LangEn.Uninstall_En();
             }
-            else if (lang = "fr")
+            else if (Values.Instance.Lang == "fr")
             {
                 var Uninstall_LangFr = new Uninstall();
                 Uninstall_LangFr.Uninstall_Fr();
             }
 
         }
-        public void ModelSave(string lang)
+        public void Save()
         {
-            save_Show.CreateSave(lang);
+            if (Values.Instance.Lang == "en")
+            {
+                var Save_LangEn = new Save_Show();
+                Save_LangEn.Save_En();
+            }
+            else if (Values.Instance.Lang == "fr")
+            {
+                var Save_LangFr = new Save_Show();
+                Save_LangFr.Save_Fr();
+            }
         }
-        public void ModelShow(string lang)
+        public void Show()
         {
-            save_Show.QuerySaves(lang);
+            if (Values.Instance.Lang == "en")
+            {
+                var Show_LangEn = new Save_Show();
+                Show_LangEn.Show_En();
+            }
+            else if (Values.Instance.Lang == "fr")
+            {
+                var Show_LangFr = new Save_Show();
+                Show_LangFr.Show_Fr();
+            }
         }
     }
 }

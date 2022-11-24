@@ -18,32 +18,32 @@ namespace EasySave
                 if (choiceDelete == "y" | choiceDelete == "Y")
                 {
                     Console.Clear();
-                    if (Directory.Exists(pathConfig + "\\Config"))
+                    if (Directory.Exists(Values.Instance.PathConfig + "\\Config"))
                     {
-                        Directory.Delete(pathConfig + "\\Config", true);
+                        Directory.Delete(Values.Instance.PathConfig + "\\Config", true);
                     }
                     Thread.Sleep(500);
-                    if (Directory.Exists(pathFolder + "\\Dailylog"))
+                    if (Directory.Exists(Values.Instance.PathFolder + "\\Dailylog"))
                     {
-                        Directory.Delete(pathFolder + "\\Dailylog", true);
-                        Console.WriteLine($"Directory {pathFolder + "\\Dailylog"} deleted!");
+                        Directory.Delete(Values.Instance.PathFolder + "\\Dailylog", true);
+                        Console.WriteLine($"Directory {Values.Instance.PathFolder + "\\Dailylog"} deleted!");
                     }
                     else
                     {
                         Console.WriteLine("\"Daily log\" non-existent.");
                     }
                     Thread.Sleep(500);
-                    if (Directory.Exists(pathFolder + "\\Statelog"))
+                    if (Directory.Exists(Values.Instance.PathFolder + "\\Statelog"))
                     {
-                        Directory.Delete(pathFolder + "\\Statelog", true);
-                        Console.WriteLine($"Directory {pathFolder + "\\Statelog"} deleted!");
+                        Directory.Delete(Values.Instance.PathFolder + "\\Statelog", true);
+                        Console.WriteLine($"Directory {Values.Instance.PathFolder + "\\Statelog"} deleted!");
                     }
                     else
                     {
                         Console.WriteLine("\"State log\" non-existent.");
                     }
                     Thread.Sleep(500);
-                    pathFolder = "Ø";
+                    Values.Instance.PathFolder = "Ø";
                     Console.Write("\nPress any key to continue... ");
                     Console.ReadKey();
                 }
@@ -65,32 +65,32 @@ namespace EasySave
                 if (choiceDelete == "o" | choiceDelete == "O")
                 {
                     Console.Clear();
-                    if (Directory.Exists(pathConfig + "\\Config"))
+                    if (Directory.Exists(Values.Instance.PathConfig + "\\Config"))
                     {
-                        Directory.Delete(pathConfig + "\\Config", true);
+                        Directory.Delete(Values.Instance.PathConfig + "\\Config", true);
                     }
                     Thread.Sleep(500);
-                    if (Directory.Exists(pathFolder + "\\Dailylog"))
+                    if (Directory.Exists(Values.Instance.PathFolder + "\\Dailylog"))
                     {
-                        Directory.Delete(pathFolder + "\\Dailylog", true);
-                        Console.WriteLine($"Dossier {pathFolder + "\\Dailylog"} supprimé!");
+                        Directory.Delete(Values.Instance.PathFolder + "\\Dailylog", true);
+                        Console.WriteLine($"Dossier {Values.Instance.PathFolder + "\\Dailylog"} supprimé!");
                     }
                     else
                     {
                         Console.WriteLine("\"Daily log\" inexistant.");
                     }
                     Thread.Sleep(500);
-                    if (Directory.Exists(pathFolder + "\\Statelog"))
+                    if (Directory.Exists(Values.Instance.PathFolder + "\\Statelog"))
                     {
-                        Directory.Delete(pathFolder + "\\Statelog", true);
-                        Console.WriteLine($"Dossier {pathFolder + "\\Statelog"} supprimé!");
+                        Directory.Delete(Values.Instance.PathFolder + "\\Statelog", true);
+                        Console.WriteLine($"Dossier {Values.Instance.PathFolder + "\\Statelog"} supprimé!");
                     }
                     else
                     {
                         Console.WriteLine("\"State log\" inexistant.");
                     }
                     Thread.Sleep(500);
-                    pathFolder = "Ø";
+                    Values.Instance.PathFolder = "Ø";
                     Console.Write("\nAppuyé sur une touche pour continuer... ");
                     Console.ReadKey();
                 }

@@ -4,52 +4,28 @@ namespace EasySave
 {
     class Interface
     {
-
-        private static ModelView modelView = new ModelView();
-
         public void MainLaunch()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             var NewBanner = new Banner();
-            bool start = true;
-            string key;
-            string lang = "";
-            bool firstLaunch;
-            string pathConfig = Directory.GetCurrentDirectory();
-            string pathFolder;
-            if (!Directory.Exists(pathConfig + "\\Config"))
-            {
-                firstLaunch = true;
-            }
-            else
-            {
-                firstLaunch = false;
-            }
-            if (!Directory.Exists(pathConfig + "\\Config"))
-            {
-                Directory.CreateDirectory(pathConfig + "\\Config");
-                pathFolder = pathConfig;
-                StreamWriter path_folder = new StreamWriter(pathConfig + "\\Config\\Path.txt");
-                path_folder.WriteLine(pathFolder);
-                path_folder.Close();
-            }
-            else
-            {
-                StreamReader path_folder = new StreamReader(pathConfig + "\\Config\\Path.txt");
-                pathFolder = path_folder.ReadLine();
-                path_folder.Close();
-            }
+
+            Values.Instance.Start = true;
+            Values.Instance.PathConfig = Directory.GetCurrentDirectory();
+         
+            var CheckF = new ModelView();
+            CheckF.FolderChecker();
+
             //---------------------------------
             //Lancement de la boucle principale
             //---------------------------------
             while (true)
             {
                 var FirstLaunch = new ModelView();
-                FirstLaunch.Language();
+                FirstLaunch.FirstLaunch();
                 //--------------------------------------------------------
                 //Detection du premier lancement dans la boucle principale
                 //--------------------------------------------------------
-                if (start == true)
+                if (Values.Instance.Start == true)
                 {
                     var Checker = new ModelView();
                     Checker.FileChecker();
@@ -63,39 +39,41 @@ namespace EasySave
                 //------------------
                 //Detection du choix
                 //------------------
-                if (key == "1") //Création de sauvegarde
+                if (Values.Instance.Key == "1") //Création de sauvegarde
                 {
-                    modelView.ModelSave(lang);
+                    var Save = new ModelView();
+                    Save.Save();
                 }
-                else if (key == "2") //Affichage des sauvegardes
+                else if (Values.Instance.Key == "2") //Affichage des sauvegardes
                 {
-                    modelView.ModelShow(lang);
+                    var Show = new ModelView();
+                    Show.Show();
                 }
-                else if (key == "3") // 1Configuration
+                else if (Values.Instance.Key == "3") // 1Configuration
                 {
                     var Config = new ModelView();
                     Config.Configuration();
-                    if (keyM == "1") //Set default path
+                    if (Values.Instance.KeyM == "1") //Set default path
                     {
                         var Path = new ModelView();
                         Path.PathDefault();
                     }
-                    else if (keyM == "2") //Select language
+                    else if (Values.Instance.KeyM == "2") //Select language
                     {
                         var Language = new ModelView();
                         Language.Language();
                     }
-                    else if (keyM == "3") //Uninstall
+                    else if (Values.Instance.KeyM == "3") //Uninstall
                     {
                         var Uninstall = new ModelView();
                         Uninstall.Uninstall();
                     }
-                    else if (keyM == "4")
+                    else if (Values.Instance.KeyM == "4")
                     {
                         continue;
                     }
                 }
-                else if (key == "4")
+                else if (Values.Instance.Key == "4")
                 {
                     Environment.Exit(0);
                 }

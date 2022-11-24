@@ -14,7 +14,7 @@ namespace EasySave
                 Console.Clear();
                 var NewBanner = new Banner();
                 NewBanner.EasySaveBanner();                    Console.WriteLine("\nWrite \"exit\" to close.\n------------------------------\n");
-                Console.WriteLine("\nActual path : " + pathFolder + "\n");
+                Console.WriteLine("\nActual path : " + Values.Instance.PathFolder + "\n");
                 if (errorPath == true)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -29,9 +29,9 @@ namespace EasySave
                 }
                 if (Directory.Exists(NewPath))
                 {
-                    pathFolder = NewPath;
-                    StreamWriter path_folder = new StreamWriter(pathConfig + "\\Config\\Path.txt");
-                    path_folder.WriteLine(pathFolder);
+                    Values.Instance.PathFolder = NewPath;
+                    StreamWriter path_folder = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Path.txt");
+                    path_folder.WriteLine(Values.Instance.PathFolder);
                     path_folder.Close();
                     break;
                 }
@@ -48,7 +48,7 @@ namespace EasySave
                 Console.Clear();
                 var NewBanner = new Banner();
                 Console.WriteLine("\nécrire \"exit\" pour fermer.\n------------------------------\n");
-                Console.WriteLine("\nChemin actuel : " + pathFolder + "\n");
+                Console.WriteLine("\nChemin actuel : " + Values.Instance.PathFolder + "\n");
                 if (errorPath == true)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -63,9 +63,9 @@ namespace EasySave
                 }
                 if (Directory.Exists(NewPath))
                 {
-                    pathFolder = NewPath;
-                    StreamWriter path_folder = new StreamWriter(pathConfig + "\\Config\\Path.txt");
-                    path_folder.WriteLine(pathFolder);
+                    Values.Instance.PathFolder = NewPath;
+                    StreamWriter path_folder = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Path.txt");
+                    path_folder.WriteLine(Values.Instance.PathFolder);
                     path_folder.Close();
                     break;
                 }

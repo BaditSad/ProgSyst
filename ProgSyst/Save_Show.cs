@@ -8,7 +8,22 @@ namespace System
     {
         private static string targetFolder = "";
         private static bool targetIsExist = false;
+        public void Save_En()
+        {
 
+        }
+        public void Save_Fr()
+        {
+
+        }
+        public void Show_En()
+        {
+
+        }
+        public void Show_Fr()
+        {
+
+        }
         public void QuerySaves(string lang)
         {
             var NewBanner = new Banner();
@@ -100,9 +115,8 @@ namespace System
                     if (!Directory.Exists(targetFolder))
                     {
                         string key;
-
                         Console.Clear();
-                        banner.EasySaveBanner();
+                        NewBanner.EasySaveBanner();
 
                         Console.WriteLine("\r\nTarget folder do not exist!");
                         Thread.Sleep(500);
@@ -129,7 +143,7 @@ namespace System
                         }
                     }
                     Console.Clear();
-                    banner.EasySaveBanner();
+                    NewBanner.EasySaveBanner();
                     Console.Write("\r\nTarget folder path: " + targetFolder);
 
                     Console.Write("\r\nPlease enter a save name: ");
@@ -160,7 +174,7 @@ namespace System
                         string key;
 
                         Console.Clear();
-                        banner.EasySaveBanner();
+                        NewBanner.EasySaveBanner();
 
                         Console.WriteLine("\r\nCible dossier n'existe pas!");
                         Thread.Sleep(500);
@@ -186,7 +200,7 @@ namespace System
                         }
                     }
                     Console.Clear();
-                    banner.EasySaveBanner();
+                    NewBanner.EasySaveBanner();
                     Console.Write("\r\nCible dossier adresse: " + targetFolder);
 
                     Console.Write("\r\nVeuillez entrer un nom de sauvegarde: ");
