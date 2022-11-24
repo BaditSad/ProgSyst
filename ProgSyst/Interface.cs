@@ -7,7 +7,6 @@ namespace EasySave
         public void MainLaunch()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            var NewBanner = new Banner();
 
             Values.Instance.Start = true;
             Values.Instance.PathConfig = Directory.GetCurrentDirectory();
@@ -63,12 +62,17 @@ namespace EasySave
                         var Language = new ModelView();
                         Language.Language();
                     }
-                    else if (Values.Instance.KeyM == "3") //Uninstall
+                    else if (Values.Instance.KeyM == "3") //Clear logs
+                    {
+                        var ClearL = new ModelView();
+                        ClearL.Logs();
+                    }
+                    else if (Values.Instance.KeyM == "4") //Uninstall
                     {
                         var Uninstall = new ModelView();
                         Uninstall.Uninstall();
                     }
-                    else if (Values.Instance.KeyM == "4")
+                    else if (Values.Instance.KeyM == "5")
                     {
                         continue;
                     }

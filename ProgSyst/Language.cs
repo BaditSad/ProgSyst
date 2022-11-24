@@ -15,21 +15,32 @@ namespace EasySave
                 {
                     var NewBanner = new Banner();
                     NewBanner.EasySaveBanner();
-                    Console.WriteLine("\n1 - English / 2 - Français");
+                    Console.ForegroundColor= ConsoleColor.DarkCyan;
+                    Console.WriteLine("\n\n > Welcome to EasySave ! < ");
+                    Console.ForegroundColor= ConsoleColor.Yellow;
+                    Console.WriteLine("EasySave is a backup software created by ProSoft with the help \nof a group of students specialized in computer science \nfrom the CESI Lille engineering school.\n");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("\n > Bienvenue sur EasySave ! < ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("EasySave est un logiciel de sauvegarde réalisé par ProSoft avec l'aide \nd'un groupe d'étudiants spécialisé en informatique \nde l'école d'ingénieurs de CESI Lille.\n");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine("\n > Brieuc.D - Weicheng.L - Arthur.K - Jean-Loup.D < ");
+                    Console.ForegroundColor= ConsoleColor.Yellow;
+                    Console.WriteLine("\n > 1 - English / 2 - Français < ");
                     keyFl = Console.ReadLine();
                     Console.Clear();
                 }
                 if (keyFl == "1")
                 {
                     Values.Instance.Lang = "en";
-                    StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.txt");
+                    StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.json");
                     config_lang.WriteLine(Values.Instance.Lang);
                     config_lang.Close();
                 }
                 if (keyFl == "2")
                 {
                     Values.Instance.Lang = "fr";
-                    StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.txt");
+                    StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.json");
                     config_lang.WriteLine(Values.Instance.Lang);
                     config_lang.Close();
                 }
@@ -37,7 +48,7 @@ namespace EasySave
             }
             else //si ce n'est pas le premier lancement on recupère la langue
             {
-                StreamReader config_lang = new StreamReader(Values.Instance.PathConfig + "\\Config\\Lang.txt");
+                StreamReader config_lang = new StreamReader(Values.Instance.PathConfig + "\\Config\\Lang.json");
                 Values.Instance.Lang = config_lang.ReadLine();
                 config_lang.Close();
             }
@@ -57,8 +68,8 @@ namespace EasySave
             {
                 Values.Instance.Lang = "en";
                 Console.Clear();
-                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.txt");
-                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.txt");
+                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.json");
+                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.json");
                 config_lang.WriteLine(Values.Instance.Lang);
                 config_lang.Close();
                 Console.WriteLine("Language : english");
@@ -69,8 +80,8 @@ namespace EasySave
             {
                 Values.Instance.Lang = "fr";
                 Console.Clear();
-                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.txt");
-                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.txt");
+                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.json");
+                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.json");
                 config_lang.WriteLine(Values.Instance.Lang);
                 config_lang.Close();
                 Console.WriteLine("Langue : français");
@@ -93,8 +104,8 @@ namespace EasySave
             {
                 Values.Instance.Lang = "en";
                 Console.Clear();
-                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.txt");
-                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.txt");
+                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.json");
+                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.json");
                 config_lang.WriteLine(Values.Instance.Lang);
                 config_lang.Close();
                 Console.WriteLine("Language : english");
@@ -105,8 +116,8 @@ namespace EasySave
             {
                 Values.Instance.Lang = "fr";
                 Console.Clear();
-                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.txt");
-                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.txt");
+                File.Delete(Values.Instance.PathConfig + "\\Config\\Lang.json");
+                StreamWriter config_lang = new StreamWriter(Values.Instance.PathConfig + "\\Config\\Lang.json");
                 config_lang.WriteLine(Values.Instance.Lang);
                 config_lang.Close();
                 Console.WriteLine("Langue : français");

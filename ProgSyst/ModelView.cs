@@ -95,6 +95,19 @@ namespace EasySave
             }
 
         }
+        public void Logs()
+        {
+            if (Values.Instance.Lang == "en")
+            {
+                var ClearL = new CLogs();
+                ClearL.ClearLogs_En();
+            }
+            else if (Values.Instance.Lang == "fr")
+            {
+                var ClearL = new CLogs();
+                ClearL.ClearLogs_Fr();
+            }
+        }
         public void Save()
         {
             if (Values.Instance.Lang == "en")

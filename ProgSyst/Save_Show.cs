@@ -1,6 +1,8 @@
 using EasySave;
 using System;
 using System.IO;
+using System.Text.Json;
+using System.Xml.Linq;
 
 namespace System
 {
@@ -8,213 +10,259 @@ namespace System
     {
         private static string targetFolder = "";
         private static bool targetIsExist = false;
+
+        string fileName = "";
+        string transfer = "";
+        string tranfertOK = "";
+        string SourcePath = "";
+        string TargetPath = "";
+        bool errorFilePath = false;
+        bool errorTargetPath = false;
+        bool saved = false;
         public void Save_En()
         {
-
+            while (saved == false)
+            {
+                Console.Clear();
+                var NewBanner = new Banner();
+                NewBanner.EasySaveBanner();
+                Console.WriteLine("\nWrite \"exit\" to go back.\n------------------------------\n");
+                if (errorFilePath == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(" - ERROR path - ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                Console.WriteLine("\rFile path : \n");
+                SourcePath = Console.ReadLine();
+                if (SourcePath == "exit")
+                {
+                    break;
+                }
+                if (File.Exists(SourcePath))
+                {
+                    while (saved == false)
+                    {
+                        Console.Clear();
+                        
+                        NewBanner.EasySaveBanner();
+                        Console.WriteLine("\nWrite \"exit\" to go back.\n------------------------------\n");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nFile path : " + SourcePath + "\n");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        if (errorTargetPath == true)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(" - ERROR path - ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                        }
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write("\r\nTarget default folder path : ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(Values.Instance.PathFolder + "\n");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Target (just \"enter\" to keep the default path) :\n");
+                        TargetPath = Console.ReadLine();
+                        if (TargetPath == "")
+                        {
+                            TargetPath = Values.Instance.PathFolder;
+                        }
+                        if (TargetPath == "exit")
+                        {
+                            break;
+                        }
+                        if (Directory.Exists(TargetPath))
+                        {
+                            while (tranfertOK != "y" & tranfertOK != "Y" & tranfertOK != "n" & tranfertOK != "N")
+                            {
+                                Console.Clear();
+                                NewBanner.EasySaveBanner();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\n##### DO THE SAVE ? #####\n");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine(SourcePath + " --> " + TargetPath);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\nY/N\n");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                tranfertOK = Console.ReadLine();
+                                if (tranfertOK == "y" | tranfertOK == "Y")
+                                {
+                                    fileName = Path.GetFileName(SourcePath);
+                                    File.Move(SourcePath, TargetPath + "\\" + fileName);
+                                    transfer = "(" + DateTime.Now + ") : " + SourcePath + " --> " + TargetPath;
+                                    StreamWriter log = new StreamWriter(Values.Instance.PathConfig + "\\Dailylog\\Log.json", true);
+                                    log.WriteLine(transfer);
+                                    log.Close();
+                                    saved = true;
+                                    Console.Clear();
+                                    Console.Write("\nDone. ");
+                                    Console.Write("\nPress any key to continue... ");
+                                    Console.ReadKey();
+                                }
+                                else if (tranfertOK == "n" & tranfertOK == "N")
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            errorTargetPath = true;
+                        }
+                    }
+                }
+                else
+                {
+                    errorFilePath = true;
+                }
+            }
         }
         public void Save_Fr()
         {
+            while (saved == false)
+            {
+                Console.Clear();
+                var NewBanner = new Banner();
+                NewBanner.EasySaveBanner();
+                Console.WriteLine("\nÉcrire \"exit\" pour revenir en arrière.\n------------------------------\n");
+                if (errorFilePath == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(" - ERREUR chemin - ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                Console.WriteLine("\rChemin du fichier : \n");
+                SourcePath = Console.ReadLine();
+                if (SourcePath == "exit")
+                {
+                    break;
+                }
+                if (File.Exists(SourcePath))
+                {
+                    while (saved == false)
+                    {
+                        Console.Clear();
 
+                        NewBanner.EasySaveBanner();
+                        Console.WriteLine("\nÉcrire \"exit\" pour revenir en arrière.\n------------------------------\n");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\nChemin du fichier : " + SourcePath + "\n");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        if (errorTargetPath == true)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(" - ERROR path - ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                        }
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write("\r\nChemin par défaut de la cible : ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(Values.Instance.PathFolder + "\n");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Cible (écrire \"enter\" pour garder le chemin par défaut) :\n");
+                        TargetPath = Console.ReadLine();
+                        if (TargetPath == "")
+                        {
+                            TargetPath = Values.Instance.PathFolder;
+                        }
+                        if (TargetPath == "exit")
+                        {
+                            break;
+                        }
+                        if (Directory.Exists(TargetPath))
+                        {
+                            while (tranfertOK != "y" & tranfertOK != "Y" & tranfertOK != "n" & tranfertOK != "N")
+                            {
+                                Console.Clear();
+                                NewBanner.EasySaveBanner();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\n##### FAIRE LA SAUVEGARDE ? #####\n");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine(SourcePath + " --> " + TargetPath);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\nO/N\n");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                tranfertOK = Console.ReadLine();
+                                if (tranfertOK == "o" | tranfertOK == "O")
+                                {
+                                    fileName = Path.GetFileName(SourcePath);
+                                    File.Move(SourcePath, TargetPath + "\\" + fileName);
+                                    transfer = "(" + DateTime.Now + ") : " + SourcePath + " --> " + TargetPath;
+                                    StreamWriter log = new StreamWriter(Values.Instance.PathConfig + "\\Dailylog\\Log.json", true);
+                                    log.WriteLine(transfer);
+                                    log.Close();
+                                    saved = true;
+                                    Console.Clear();
+                                    Console.Write("\nTerminer. ");
+                                    Console.Write("\nAppuyer sur une touche pour continuer... ");
+                                    Console.ReadKey();
+                                }
+                                else if (tranfertOK == "n" & tranfertOK == "N")
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            errorTargetPath = true;
+                        }
+                    }
+                }
+                else
+                {
+                    errorFilePath = true;
+                }
+            }
         }
         public void Show_En()
         {
-
+            if (File.Exists(Values.Instance.PathConfig + "\\Dailylog\\Log.json"))
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                StreamReader LogFile = new StreamReader(Values.Instance.PathConfig + "\\Dailylog\\Log.json");
+                string LogFileString = LogFile.ReadToEnd();
+                LogFile.Close();
+                Console.Write(LogFileString);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("\nPress any key to close... ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("NOTHING TO SHOW !\n");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("\nPress any key to continue... ");
+                Console.ReadKey();
+            }
         }
         public void Show_Fr()
         {
-
-        }
-        public void QuerySaves(string lang)
-        {
-            var NewBanner = new Banner();
-            Console.Clear();
-            NewBanner.EasySaveBanner();
-
-            if (lang == "en")
-            {
-                if (targetFolder == null)
-                {
-                    Console.WriteLine("\r\nTarget folder do not exist!");
-                }
-                else
-                {
-                    string[] fileNames = Directory.GetFiles(targetFolder);
-
-                    if (fileNames.Length == 0)
-                    {
-                        Console.WriteLine("\r\nThere is nothing to show");
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        for (int i = 0; i < fileNames.Length; i++)
-                        {
-                            Console.WriteLine(fileNames[i]);
-                        }
-                    }
-                }
-                Console.Write("\r\nPress any key to menu...");
-                Console.ReadKey();
-            }
-            else if (lang == "fr")
-            {
-                if (targetFolder == null)
-                {
-                    Console.WriteLine("\r\nCible dossier n'existe pas!");
-                }
-                else
-                {
-                    string[] fileNames = Directory.GetFiles(targetFolder);
-
-                    if (fileNames.Length == 0)
-                    {
-                        Console.WriteLine("\r\nIl y a aucun fichier...");
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        for (int i = 0; i < fileNames.Length; i++)
-                        {
-                            Console.WriteLine(fileNames[i]);
-                        }
-                    }
-                }
-                Console.Write("\r\nAppuy¨¦ un bouton pour retourner au menu...");
-                Console.ReadKey();
-            }
-
-            Console.Clear();
-        }
-
-        public void CreateSave(string lang)
-        {
-            var NewBanner = new Banner();
-            string saveName = "";
-            string targetFile = targetFolder + "\\" + saveName;
-
-            while (true)
+            if (File.Exists(Values.Instance.PathConfig + "\\Dailylog\\Log.json"))
             {
                 Console.Clear();
-                NewBanner.EasySaveBanner();
-
-                if (lang == "en")
-                {
-                    //verify target folder exist?
-                    if (!targetIsExist)
-                    {
-                        //enter target folder path
-                        Console.Write("\r\nTarget folder path: ");
-                        targetFolder = Console.ReadLine();
-                    }
-                    else
-                    {
-                        Console.Write("\r\nTarget folder path: " + targetFolder);
-                    }
-
-                    //verify path is true?
-                    if (!Directory.Exists(targetFolder))
-                    {
-                        string key;
-                        Console.Clear();
-                        NewBanner.EasySaveBanner();
-
-                        Console.WriteLine("\r\nTarget folder do not exist!");
-                        Thread.Sleep(500);
-                        Console.WriteLine("\r\nDo you want to create one?");
-                        Console.WriteLine("######### Yes:Y/No:N #########");
-                        key = Console.ReadLine();
-
-                        if (key == "Y" || key == "y")
-                        {
-                            Directory.CreateDirectory(targetFolder);
-                            targetIsExist = true;
-                            Console.WriteLine("Created successfully...");
-                            Thread.Sleep(500);
-                        }
-                        else if (key == "N" || key == "n")
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid parameter");
-                            Thread.Sleep(500);
-                            continue;
-                        }
-                    }
-                    Console.Clear();
-                    NewBanner.EasySaveBanner();
-                    Console.Write("\r\nTarget folder path: " + targetFolder);
-
-                    Console.Write("\r\nPlease enter a save name: ");
-                    saveName = Console.ReadLine();
-                    File.Create(targetFile).Close();
-                    Console.WriteLine("\r\nCreated successfully...");
-
-                    //return to menu
-                    Console.Write("\r\nPress any key to menu...");
-                    Console.ReadKey();
-                }
-                else if (lang == "fr")
-                {
-                    if (!targetIsExist)
-                    {
-                        //entrer cible dossier path
-                        Console.Write("\r\nCible dossier adresse: ");
-                        targetFolder = Console.ReadLine();
-                    }
-                    else
-                    {
-                        Console.Write("\r\nCible dossier adresse: " + targetFolder);
-                    }
-
-                    //verify path is true?
-                    if (!Directory.Exists(targetFolder))
-                    {
-                        string key;
-
-                        Console.Clear();
-                        NewBanner.EasySaveBanner();
-
-                        Console.WriteLine("\r\nCible dossier n'existe pas!");
-                        Thread.Sleep(500);
-                        Console.WriteLine("\r\nEst-ce que tu veux cr¨¦er un nouveau?");
-                        Console.WriteLine("######### Oui:O/Non:N #########");
-                        key = Console.ReadLine();
-
-                        if (key == "O" || key == "o")
-                        {
-                            Directory.CreateDirectory(targetFolder);
-                            Console.WriteLine("c'est fait...");
-                            Thread.Sleep(500);
-                        }
-                        else if (key == "N" || key == "n")
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Parametre invalide");
-                            Thread.Sleep(500);
-                            continue;
-                        }
-                    }
-                    Console.Clear();
-                    NewBanner.EasySaveBanner();
-                    Console.Write("\r\nCible dossier adresse: " + targetFolder);
-
-                    Console.Write("\r\nVeuillez entrer un nom de sauvegarde: ");
-                    saveName = Console.ReadLine();
-                    File.Create(targetFile).Close();
-                    Console.WriteLine("\r\nc'est fait...");
-
-                    //return to menu
-                    Console.Write("\r\nAppuy¨¦ un bouton pour retourner au menu...");
-                    Console.ReadKey();
-                }
-
+                Console.ForegroundColor = ConsoleColor.Green;
+                StreamReader LogFile = new StreamReader(Values.Instance.PathConfig + "\\Dailylog\\Log.json");
+                string LogFileString = LogFile.ReadToEnd();
+                LogFile.Close();
+                Console.Write(LogFileString);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Appuyer sur une touche pour fermer... ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ReadKey();
+            }
+            else
+            {
                 Console.Clear();
-                return;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("RIEN À AFFICHER !\n");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("\nAppuyer sur une touche pour continuer... ");
+                Console.ReadKey();
             }
         }
     }
