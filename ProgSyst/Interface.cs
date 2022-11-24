@@ -71,7 +71,7 @@ namespace EasySave
                 {
                     modelView.ModelShow(lang);
                 }
-                else if (key == "3") // Configuration
+                else if (key == "3") // 1Configuration
                 {
                     var Config = new ModelView();
                     Config.Configuration();
