@@ -32,7 +32,7 @@ namespace EasySave
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("\n[2] - ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Show saves");
+            Console.Write("Show saves (logs)");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("\n[3] - ");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -70,7 +70,7 @@ namespace EasySave
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("\n[2] - ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Afficher sauvegardes");
+            Console.Write("Afficher sauvegardes (logs)");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("\n[3] - ");
             Console.ForegroundColor = ConsoleColor.Yellow;

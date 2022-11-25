@@ -31,7 +31,7 @@ namespace EasySave
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[1] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Set default save path");
+                Console.Write("Set default target path");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[2] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -39,11 +39,11 @@ namespace EasySave
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[3] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Clear logs");
+                Console.Write("Clear saves (logs)");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[4] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Uninstall");
+                Console.Write("Reset");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[5] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -77,7 +77,7 @@ namespace EasySave
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[1] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Changer le chemin par défaut");
+                Console.Write("Changer le chemin cible par défaut");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[2] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -85,11 +85,11 @@ namespace EasySave
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[3] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Supprimer les logs");
+                Console.Write("Supprimer les sauvegardes (logs)");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[4] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Desinstaller");
+                Console.Write("Rénitialiser");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[5] - ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
