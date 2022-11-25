@@ -8,8 +8,4 @@
     <ApplicationIcon>disque-dur.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="disque-dur.ico" />
-  </ItemGroup>
-
 </Project>
