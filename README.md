@@ -68,4 +68,4 @@ Le logiciel s’installe par défaut dans le dossier suivant : C:\Users\user\Sou
 
 La configuration minimale requise est la suivante : windows 10
 
-If you are looking for the user document in english, you can download it through this link: https://mega.nz/file/OTIV3RDC#F-Zj4T1_Q88FfZvzn9aDYdZmGAEYiLdery9SAEWYuAs 
+Note: If you are looking for the user document in english, you can download it through this link: https://mega.nz/file/OTIV3RDC#F-Zj4T1_Q88FfZvzn9aDYdZmGAEYiLdery9SAEWYuAs 
