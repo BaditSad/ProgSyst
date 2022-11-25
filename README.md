@@ -1,5 +1,7 @@
 <h1>EasySave1.0</h1>
 
+Vous trouverez ici les informations importantes concernant le fonctionnemennt du logiciel.
+
 <h2>I | Diagramme UML</h2>
 
 Vous pouvez retrouver ci-dessous l'ensemble des diagrammes UML que nous avons créés pour aider à la compréhension de l’application, de ses fonctionnalités et de son architecture. Pour cela 3 différents types de diagrammes ont été réalisés :
