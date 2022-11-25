@@ -46,6 +46,8 @@ Le diagramme de classes nous permet de construire l'architecture de notre progra
 
 <h2 style="color:red">II | Documentation utilisateur</h2>
 
+EasySave1.0 est une application qui a pour objectif de créer des travaux de sauvegarde, c'est à dire de permettre à l'utilisateur de déplacer des fichiers d'un dossier source jusqu'à un dossier cible. Il est possible d'afficher les logs de l'application pour permettre d'avoir un historique des fichiers déplacés.
+
 Lors du premier lancement du logiciel, il est demandé de choisir le langage de l’application. 2 choix sont proposés : français et anglais. Ensuite, le menu d’accueil s’affiche. Sur ce dernier 4 actions sont proposées : creat save, show saves, config et close.
 
 1 - « Close » permet de fermer l’application.
