@@ -26,7 +26,7 @@ namespace EasySave
                     Console.WriteLine("\nDefault target path : " + Values.Instance.PathFolder);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                 }
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n >>> Menu > Configuration <<<");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[1] - ");
@@ -72,7 +72,7 @@ namespace EasySave
                     Console.WriteLine("\nChemin cible par défaut : " + Values.Instance.PathFolder);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                 }
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n >>> Menu > Configuration <<<");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("\n[1] - ");

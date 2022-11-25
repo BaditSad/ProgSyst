@@ -24,7 +24,7 @@ namespace EasySave
                     Console.WriteLine("\n > Bienvenue sur EasySave ! < ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("EasySave est un logiciel de sauvegarde réalisé par ProSoft avec l'aide \nd'un groupe d'étudiants spécialisé en informatique \nde l'école d'ingénieurs de CESI Lille.\n");
-                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("\n > Brieuc.D - Weicheng.L - Arthur.K - Jean-Loup.D < ");
                     Console.ForegroundColor= ConsoleColor.Yellow;
                     Console.WriteLine("\n > 1 - English / 2 - Français < ");

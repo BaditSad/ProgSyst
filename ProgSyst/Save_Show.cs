@@ -1,6 +1,7 @@
 using EasySave;
 using System;
 using System.IO;
+using System.Runtime;
 using System.Text.Json;
 using System.Xml.Linq;
 
@@ -33,13 +34,13 @@ namespace System
                     Console.WriteLine(" - ERROR path - ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                 }
-                Console.WriteLine("\rFile path : \n");
+                Console.WriteLine("\rFolder path : \n");
                 SourcePath = Console.ReadLine();
                 if (SourcePath == "exit")
                 {
                     break;
                 }
-                if (File.Exists(SourcePath))
+                if (Directory.Exists(SourcePath))
                 {
                     while (saved == false)
                     {
@@ -48,7 +49,7 @@ namespace System
                         NewBanner.EasySaveBanner();
                         Console.WriteLine("\nWrite \"exit\" to go back.\n------------------------------\n");
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nFile path : " + SourcePath + "\n");
+                        Console.WriteLine("\nFolder path : " + SourcePath + "\n");
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         if (errorTargetPath == true)
                         {
@@ -87,12 +88,16 @@ namespace System
                                 tranfertOK = Console.ReadLine();
                                 if (tranfertOK == "y" | tranfertOK == "Y")
                                 {
-                                    fileName = Path.GetFileName(SourcePath);
-                                    File.Move(SourcePath, TargetPath + "\\" + fileName);
-                                    transfer = "(" + DateTime.Now + ") : " + SourcePath + " --> " + TargetPath;
-                                    StreamWriter log = new StreamWriter(Values.Instance.PathConfig + "\\Dailylog\\Log.json", true);
-                                    log.WriteLine(transfer);
-                                    log.Close();
+                                    foreach (string file in Directory.EnumerateFiles(SourcePath))
+                                    {
+                                        string destFile = Path.Combine(TargetPath, Path.GetFileName(file));
+                                        File.Move(file, destFile);
+                                        fileName = Path.GetFileName(SourcePath);
+                                        transfer = "(" + DateTime.Now + ") : " + SourcePath + " --> " + destFile;
+                                        StreamWriter log = new StreamWriter(Values.Instance.PathConfig + "\\Dailylog\\Log.json", true);
+                                        log.WriteLine(transfer);
+                                        log.Close();
+                                    }
                                     saved = true;
                                     Console.Clear();
                                     Console.Write("\nDone. ");
@@ -134,7 +139,7 @@ namespace System
                     Console.WriteLine(" - ERREUR chemin - ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                 }
-                Console.WriteLine("\rChemin du fichier : \n");
+                Console.WriteLine("\rChemin du dossier : \n");
                 SourcePath = Console.ReadLine();
                 if (SourcePath == "exit")
                 {
@@ -149,7 +154,7 @@ namespace System
                         NewBanner.EasySaveBanner();
                         Console.WriteLine("\nÉcrire \"exit\" pour revenir en arrière.\n------------------------------\n");
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nChemin du fichier : " + SourcePath + "\n");
+                        Console.WriteLine("\nChemin du dossier : " + SourcePath + "\n");
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         if (errorTargetPath == true)
                         {
@@ -158,7 +163,7 @@ namespace System
                             Console.ForegroundColor = ConsoleColor.Yellow;
                         }
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("\r\nChemin par défaut de la cible : ");
+                        Console.Write("\r\nChemin cible par défaut : ");
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(Values.Instance.PathFolder + "\n");
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -188,12 +193,16 @@ namespace System
                                 tranfertOK = Console.ReadLine();
                                 if (tranfertOK == "o" | tranfertOK == "O")
                                 {
-                                    fileName = Path.GetFileName(SourcePath);
-                                    File.Move(SourcePath, TargetPath + "\\" + fileName);
-                                    transfer = "(" + DateTime.Now + ") : " + SourcePath + " --> " + TargetPath;
-                                    StreamWriter log = new StreamWriter(Values.Instance.PathConfig + "\\Dailylog\\Log.json", true);
-                                    log.WriteLine(transfer);
-                                    log.Close();
+                                    foreach (string file in Directory.EnumerateFiles(SourcePath))
+                                    {
+                                        string destFile = Path.Combine(TargetPath, Path.GetFileName(file));
+                                        File.Move(file, destFile);
+                                        fileName = Path.GetFileName(SourcePath);
+                                        transfer = "(" + DateTime.Now + ") : " + SourcePath + " --> " + destFile;
+                                        StreamWriter log = new StreamWriter(Values.Instance.PathConfig + "\\Dailylog\\Log.json", true);
+                                        log.WriteLine(transfer);
+                                        log.Close();
+                                    }
                                     saved = true;
                                     Console.Clear();
                                     Console.Write("\nTerminer. ");
