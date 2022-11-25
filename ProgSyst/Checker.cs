@@ -7,6 +7,9 @@ namespace EasySave
     {
         public void CheckFolders()
         {
+            //Check if folders exist
+            //If exist : read files
+            //If not exist : create folder and files
             if (!Directory.Exists(Values.Instance.PathConfig + "\\Config"))
             {
                 Directory.CreateDirectory(Values.Instance.PathConfig + "\\Config");
@@ -32,6 +35,9 @@ namespace EasySave
     {
         public void Checker_En()
         {
+            //Check folder
+            //Create them if no exist
+            //(english)
             if (!Directory.Exists(Values.Instance.PathConfig + "\\Dailylog"))
             {
                 Console.WriteLine($"Directory Dailylog does not exist!");
@@ -59,6 +65,9 @@ namespace EasySave
         }
         public void Checker_Fr()
         {
+            //Check folder
+            //Create them if no exist
+            //(french)
             if (!Directory.Exists(Values.Instance.PathConfig + "\\Dailylog"))
             {
                 Console.WriteLine($"Dossier Dailylog n'éxiste pas!");

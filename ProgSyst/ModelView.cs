@@ -5,7 +5,8 @@ namespace EasySave
 {
     class ModelView
     {
-
+        //Lauch method by using class to made the difference between french and english
+        //If haven't view, a method can be launch without take care about specific language
         public void FolderChecker()
         {
             var CheckF = new FolderChecker();

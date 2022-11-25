@@ -8,7 +8,8 @@ namespace EasySave
         string keyL = "0";
         public void FirstLaunch()
         {
-            if (Values.Instance.FirstLaunch == true) //On détecte si c'est le premier lancement sur la machine pour définir le language
+            //SHow welcome message and ask for language
+            if (Values.Instance.FirstLaunch == true)
             {
                 string keyFl = "0";
                 while (keyFl != "1" & keyFl != "2")
@@ -46,7 +47,7 @@ namespace EasySave
                 }
                 Values.Instance.FirstLaunch = false;
             }
-            else //si ce n'est pas le premier lancement on recupère la langue
+            else
             {
                 StreamReader config_lang = new StreamReader(Values.Instance.PathConfig + "\\Config\\Lang.json");
                 Values.Instance.Lang = config_lang.ReadLine();
@@ -55,6 +56,7 @@ namespace EasySave
         }
         public void Language_En()
         {
+            //Ask user to change language (english)
             while (keyL != "1" & keyL != "2")
             {
                 Console.Clear();
@@ -91,6 +93,7 @@ namespace EasySave
         }
         public void Language_Fr()
         {
+            //Ask user to change language (french)
             while (keyL != "1" & keyL != "2")
             {
                 Console.Clear();

@@ -8,9 +8,6 @@ namespace System
 {
     public class Save_Show
     {
-        private static string targetFolder = "";
-        private static bool targetIsExist = false;
-
         string fileName = "";
         string transfer = "";
         string tranfertOK = "";
@@ -21,6 +18,9 @@ namespace System
         bool saved = false;
         public void Save_En()
         {
+            //Do a save (move a file to an other folder)
+            //Verify if path exist and write in log file
+            //(english)
             while (saved == false)
             {
                 Console.Clear();
@@ -119,6 +119,9 @@ namespace System
         }
         public void Save_Fr()
         {
+            //Do a save (move a file to an other folder)
+            //Verify if path exist and write in log file
+            //(french)
             while (saved == false)
             {
                 Console.Clear();
@@ -217,6 +220,7 @@ namespace System
         }
         public void Show_En()
         {
+            //Show logs if Dailylog folder exist (english)
             if (File.Exists(Values.Instance.PathConfig + "\\Dailylog\\Log.json"))
             {
                 Console.Clear();
@@ -242,6 +246,7 @@ namespace System
         }
         public void Show_Fr()
         {
+            //Show logs if Dailylog folder exist (french)
             if (File.Exists(Values.Instance.PathConfig + "\\Dailylog\\Log.json"))
             {
                 Console.Clear();

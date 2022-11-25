@@ -5,6 +5,7 @@ namespace EasySave
 {
     class Uninstall
     {
+        //Uninstall all folders to reset the software
         string choiceDelete = "";
         public void Uninstall_En()
         {

@@ -9,6 +9,7 @@ namespace EasySave
         bool errorPath = false;
         public void Path_En()
         {
+            //Write the default path (english)
             while (true)
             {
                 Console.Clear();
@@ -47,6 +48,7 @@ namespace EasySave
         }
         public void Path_Fr()
         {
+            //Write the default path (french)
             while (true)
             {
                 Console.Clear();

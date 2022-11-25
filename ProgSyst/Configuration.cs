@@ -8,6 +8,7 @@ namespace EasySave
         string keyM = "0";
         public void Config_En()
         {
+            //Show config menu (english)
             while (keyM != "1" & keyM != "2" & keyM != "3" & keyM != "4" & keyM != "5")
             {
                 Console.Clear();
@@ -53,6 +54,7 @@ namespace EasySave
         }
         public void Config_Fr()
         {
+            //Show config menu (french)
             while (keyM != "1" & keyM != "2" & keyM != "3" & keyM != "4" & keyM != "5")
             {
                 Console.Clear();

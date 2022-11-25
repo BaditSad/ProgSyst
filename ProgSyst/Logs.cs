@@ -7,6 +7,7 @@ namespace EasySave
         string choiceClearLogs;
         public void ClearLogs_En()
         {
+            //Verify if have logs and show them (english)
             if (File.Exists(Values.Instance.PathConfig + "\\Dailylog\\Log.json"))
             {
                 while (choiceClearLogs != "y" & choiceClearLogs != "Y" & choiceClearLogs != "n" & choiceClearLogs != "N")
@@ -44,6 +45,7 @@ namespace EasySave
         }
         public void ClearLogs_Fr()
         {
+            //Verify if have logs and show them (french)
             if (File.Exists(Values.Instance.PathConfig + "\\Dailylog\\Log.json"))
             {
                 while (choiceClearLogs != "y" & choiceClearLogs != "Y" & choiceClearLogs != "n" & choiceClearLogs != "N")

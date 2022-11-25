@@ -7,6 +7,8 @@ namespace EasySave
     {
         public void Menu_En()
         {
+            //Show the principal menu (english)
+            Console.Clear();
             var NewBanner = new Banner();
             NewBanner.EasySaveBanner();
             if (Values.Instance.PathFolder == "Ø")
@@ -43,6 +45,8 @@ namespace EasySave
         }
         public void Menu_Fr()
         {
+            //Show the principal menu (french)
+            Console.Clear();
             var NewBanner = new Banner();
             NewBanner.EasySaveBanner();
             if (Values.Instance.PathFolder == "Ø")

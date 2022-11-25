@@ -4,35 +4,35 @@ namespace EasySave
 {
     class Values
     {
-        public string Key
+        public string Key //Menu key
         {
             get; set;
         }
-        public string KeyM
+        public string KeyM //Configuration menu key
         {
             get; set;
         }
-        public string Lang
+        public string Lang //Language
         {
             get; set;
         }
-        public bool FirstLaunch
+        public bool FirstLaunch //Program first launch
         {
             get; set;
         }
-        public bool Start
+        public bool Start //Loop first launch
         {
             get; set;
         }
-        public string PathConfig
+        public string PathConfig //Config path folder
         {
             get; set;
         }
-        public string PathFolder
+        public string PathFolder //Target path folder
         {
             get; set;
         }
-        public string log
+        public string log //Transfer log
         {
             get; set;
         }

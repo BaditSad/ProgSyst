@@ -7,6 +7,7 @@ namespace EasySave
     {
         static void Main()
         {
+            //Launch the interface
             Interface PgrmSyst = new Interface();
             PgrmSyst.MainLaunch();
         }
