@@ -1,6 +1,6 @@
 <h1>EasySave1.0</h1>
 
-Vous trouverez ici les informations importantes concernant le fonctionnemennt du logiciel.
+Vous trouverez ici les informations importantes concernant le fonctionnemennt du logiciel par le biais des diagrammes, ansi que la documentation utilisateur en fin de post.
 
 <h2>I | Diagramme UML</h2>
 
@@ -44,4 +44,23 @@ Le diagramme de classes nous permet de construire l'architecture de notre progra
 
 <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0c4ead9f-047f-4c57-b6cb-9b875148b55a/diagramme_de_classes.drawio.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221125%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221125T171332Z&X-Amz-Expires=86400&X-Amz-Signature=da52da40eaae4fba6453753c84e87b8d75147f1b40fb6d8b4e6a4ef42f490a0b&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22diagramme_de_classes.drawio.png%22&x-id=GetObject" title="dc">
 
-<h2>II | Documentation</h2>
+<h2 style="color:red">II | Documentation utilisateur</h2>
+
+Lors du premier lancement du logiciel, il est demandé de choisir le langage de l’application. 2 choix sont proposés : français et anglais. Ensuite, le menu d’accueil s’affiche. Sur ce dernier 4 actions sont proposées : creat save, show saves, config et close.
+
+1 - « Close » permet de fermer l’application.
+
+2 - « Create save » permet de créer la sauvegarde. Lorsque cette option est sélectionnée, il est demandé de sélectionner un dossier source qui sera le dossier à déplacer. Il faut ensuite choisir le dossier cible qui est le dossier dans lequel les fichiers du dossier source seront déplacés. Si besoin, il existe un chemin cible qui a été défini par défaut lors du premier lancement de lancement de l’application (dossier dans lequel l’application est installée) et qui sera utilisé si l’utilisateur ne saisit rien et presse « entrer ». Une confirmation est demandée à l’utilisateur avant d’effectuer l’action.
+
+3 - « Show saves » permet d’afficher le fichier « daily log », c’est-à-dire les logs des dernières actions effectuées sur l’application.
+
+4 - « Config » permet de changer certains paramètres de l’application. 4 actions sont disponibles dans ce sous-menu :
+- « Set default path » qui permet de changer le default path selon les souhaits de l’utilisateur
+- « Language » permet de changer la langue de l’application
+- « Clear log » permet de supprimer le fichier log (un nouveau fichier log sera créé à la prochaine action réalisée avec l’application)
+- « Uninstall » permet de reset l’application et de la relancer comme si c’était la 1ère fois
+
+Un problème a été révélé lors du développement de cette v1.0 de EasySoft qui est le suivant. Lorsque le message de bienvenue s'affiche au premier lancement, il faut choisir une langue. Si l'utilisateur prend l'initiative de fermer la console sans faire de sélection et qu'il décide de relancer le programme, le programme ne se lancera pas. Pour corriger ce problème si jamais le programme ne fonctionne plus : Supprimer le dossier "Config" à la racine du code source.
+
+Le logiciel s’installe par défaut dans le dossier suivant : C:\Users\user\Source\Repos\BaditSad\ProgSyst\ProgSyst
+La configuration minimale requise est la suivante : windows 10
