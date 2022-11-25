@@ -10,3 +10,7 @@ Lors du premier lancement du logiciel, il est demandé de choisir le langage de 
   -	« Uninstall » permet de reset l’application et de la relancer comme si c’était la 1ère fois
 
 Un problème a été révélé lors du développement de cette v1.0 de EasySoft qui est le suivant. Lorsque le message de bienvenue s'affiche au premier lancement, il faut choisir une langue. Si l'utilisateur prend l'initiative de fermer la console sans faire de sélection et qu'il décide de relancer le programme, le programme ne se lancera pas. Pour corriger ce problème si jamais le programme ne fonctionne plus : Supprimer le dossier "Config" à la racine du code source.
+
+Le logiciel s’installe par défaut dans le dossier suivant : C:\Users\user\Source\Repos\BaditSad\ProgSyst\ProgSyst
+La configuration minimale requise est la suivante : 
+Les fichiers de configuration sont stockés dans le dossier suivant : 
