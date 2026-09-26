@@ -1,16 +1,65 @@
-# ProgSyst
-Lors du premier lancement du logiciel, il est demandé de choisir le langage de l’application. 2 choix sont proposés : français et anglais. Ensuite, le menu d’accueil s’affiche. Sur ce dernier 4 actions sont proposées : creat save, show saves, config et close.
-« Close » permet de fermer l’application.
-« Create save » permet de créer la sauvegarde. Lorsque cette option est sélectionnée, il est demandé de sélectionner un dossier source qui sera le dossier à déplacer. Il faut ensuite choisir le dossier cible qui est le dossier dans lequel les fichiers du dossier source seront déplacés. Si besoin, il existe un chemin cible qui a été défini par défaut lors du premier lancement de lancement de l’application (dossier dans lequel l’application est installée) et qui sera utilisé si l’utilisateur ne saisit rien et presse « entrer ». Une confirmation est demandée à l’utilisateur avant d’effectuer l’action.
-« Show saves » permet d’afficher le fichier « daily log », c’est-à-dire les logs des dernières actions effectuées sur l’application.
-« Config » permet de changer certains paramètres de l’application. 4 actions sont disponibles dans ce sous-menu :
-  -	« Set default path » qui permet de changer le default path selon les souhaits de l’utilisateur
-  -	« Language » permet de changer la langue de l’application
-  -	« Clear log » permet de supprimer le fichier log (un nouveau fichier log sera créé à la prochaine action réalisée avec l’application)
-  -	« Uninstall » permet de reset l’application et de la relancer comme si c’était la 1ère fois
+<div align="center">
+  <h1>ProgSyst (EasySave v1)</h1>
+  <p>Logiciel de sauvegarde de fichiers en ligne de commande, développé en C#, avec gestion de la configuration et des logs.</p>
 
-Un problème a été révélé lors du développement de cette v1.0 de EasySoft qui est le suivant. Lorsque le message de bienvenue s'affiche au premier lancement, il faut choisir une langue. Si l'utilisateur prend l'initiative de fermer la console sans faire de sélection et qu'il décide de relancer le programme, le programme ne se lancera pas. Pour corriger ce problème si jamais le programme ne fonctionne plus : Supprimer le dossier "Config" à la racine du code source.
+<p>
+  <img src="https://img.shields.io/github/last-commit/BaditSad/ProgSyst" alt="last update" />
+  <img src="https://img.shields.io/github/languages/top/BaditSad/ProgSyst" alt="top language" />
+</p>
+</div>
 
-Le logiciel s’installe par défaut dans le dossier suivant : C:\Users\user\Source\Repos\BaditSad\ProgSyst\ProgSyst
-La configuration minimale requise est la suivante : 
-Les fichiers de configuration sont stockés dans le dossier suivant :
+<br />
+
+## Table des matières
+
+- [A propos](#a-propos)
+- [Stack technique](#stack-technique)
+- [Fonctionnalités](#fonctionnalites)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Problème connu](#probleme-connu)
+- [Dépôts liés](#depots-lies)
+- [Contact](#contact)
+
+## A propos
+
+ProgSyst est le nom du dépôt, mais le projet s'appelle en réalité EasySave (voir le namespace `EasySave` dans le code). C'est un utilitaire de sauvegarde en ligne de commande développé dans le cadre de mes études : au premier lancement, l'utilisateur choisit la langue de l'application (français ou anglais), puis accède à un menu permettant de créer une sauvegarde, consulter les logs, et configurer l'application.
+
+Le dossier `Diagrams` contient les diagrammes UML (activité, classes, séquences) réalisés en amont du développement.
+
+## Stack technique
+
+<details>
+  <summary>Application</summary>
+  <ul>
+    <li>C# / .NET</li>
+    <li>Console (System.Console)</li>
+  </ul>
+</details>
+
+## Fonctionnalités
+
+- Sélection de la langue au premier lancement (français ou anglais)
+- Création d'une sauvegarde : choix d'un dossier source et d'un dossier cible, avec chemin cible par défaut configurable
+- Consultation des logs des dernières actions (daily log)
+- Configuration : changement du chemin par défaut, changement de langue, suppression des logs, réinitialisation complète de l'application (uninstall)
+
+## Installation
+
+Ouvrir `ProgSyst.sln` dans Visual Studio et compiler le projet `ProgSyst`.
+
+## Utilisation
+
+Lancer l'exécutable généré. Le menu principal propose : create save, show saves, config, close.
+
+## Problème connu
+
+Si l'utilisateur ferme la console au tout premier lancement, avant d'avoir choisi une langue, l'application ne se relance plus. Pour corriger cela, supprimer le dossier `Config` à la racine du code source puis relancer l'application.
+
+## Dépôts liés
+
+Ce projet est la première version d'EasySave. Une seconde version, avec une architecture revue, existe dans [EasySave.V2](https://github.com/BaditSad/EasySave.V2).
+
+## Contact
+
+Brieuc Dumortier, [LinkedIn](https://www.linkedin.com/in/dumortier-brieuc/), dumortier.contact@gmail.com
