@@ -1,6 +1,8 @@
 <div align="center">
+  <img src=".github/assets/banner.png" alt="EasySave v1 banner" width="100%" />
+
   <h1>ProgSyst (EasySave v1)</h1>
-  <p>Logiciel de sauvegarde de fichiers en ligne de commande, développé en C#, avec gestion de la configuration et des logs.</p>
+  <p>Command-line file backup software, developed in C#, with configuration and log management.</p>
 
 <p>
   <img src="https://img.shields.io/github/last-commit/BaditSad/ProgSyst" alt="last update" />
@@ -10,24 +12,27 @@
 
 <br />
 
-## Table des matières
+## :notebook_with_decorative_cover: Table of Contents
 
-- [A propos](#a-propos)
-- [Stack technique](#stack-technique)
-- [Fonctionnalités](#fonctionnalites)
-- [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Problème connu](#probleme-connu)
-- [Dépôts liés](#depots-lies)
-- [Contact](#contact)
+- [About](#star2-about)
+- [Tech Stack](#space_invader-tech-stack)
+- [Features](#dart-features)
+- [Installation](#gear-installation)
+- [Usage](#eyes-usage)
+- [Known Issue](#warning-known-issue)
+- [Related Repositories](#link-related-repositories)
+- [Contact](#handshake-contact)
 
-## A propos
+## :star2: About
 
-ProgSyst est le nom du dépôt, mais le projet s'appelle en réalité EasySave (voir le namespace `EasySave` dans le code). C'est un utilitaire de sauvegarde en ligne de commande développé dans le cadre de mes études : au premier lancement, l'utilisateur choisit la langue de l'application (français ou anglais), puis accède à un menu permettant de créer une sauvegarde, consulter les logs, et configurer l'application.
+ProgSyst is the repository's name, but the project is actually called EasySave (see the `EasySave` namespace
+in the code). It's a command-line backup utility developed as part of my studies: on first launch, the user
+picks the application's language (French or English), then reaches a menu to create a backup, view logs, and
+configure the application.
 
-Le dossier `Diagrams` contient les diagrammes UML (activité, classes, séquences) réalisés en amont du développement.
+The `Diagrams` folder contains the UML diagrams (activity, class, sequence) produced ahead of development.
 
-## Stack technique
+## :space_invader: Tech Stack
 
 <details>
   <summary>Application</summary>
@@ -37,29 +42,31 @@ Le dossier `Diagrams` contient les diagrammes UML (activité, classes, séquence
   </ul>
 </details>
 
-## Fonctionnalités
+## :dart: Features
 
-- Sélection de la langue au premier lancement (français ou anglais)
-- Création d'une sauvegarde : choix d'un dossier source et d'un dossier cible, avec chemin cible par défaut configurable
-- Consultation des logs des dernières actions (daily log)
-- Configuration : changement du chemin par défaut, changement de langue, suppression des logs, réinitialisation complète de l'application (uninstall)
+- Language selection on first launch (French or English)
+- Backup creation: source and target folder selection, with a configurable default target path
+- Recent action log browsing (daily log)
+- Configuration: default path change, language change, log deletion, full application reset (uninstall)
 
-## Installation
+## :gear: Installation
 
-Ouvrir `ProgSyst.sln` dans Visual Studio et compiler le projet `ProgSyst`.
+Open `ProgSyst.sln` in Visual Studio and build the `ProgSyst` project.
 
-## Utilisation
+## :eyes: Usage
 
-Lancer l'exécutable généré. Le menu principal propose : create save, show saves, config, close.
+Run the generated executable. The main menu offers: create save, show saves, config, close.
 
-## Problème connu
+## :warning: Known Issue
 
-Si l'utilisateur ferme la console au tout premier lancement, avant d'avoir choisi une langue, l'application ne se relance plus. Pour corriger cela, supprimer le dossier `Config` à la racine du code source puis relancer l'application.
+If the user closes the console on the very first launch, before picking a language, the application no longer
+starts. To fix this, delete the `Config` folder at the source code root then relaunch the application.
 
-## Dépôts liés
+## :link: Related Repositories
 
-Ce projet est la première version d'EasySave. Une seconde version, avec une architecture revue, existe dans [EasySave.V2](https://github.com/BaditSad/EasySave.V2).
+This project is the first version of EasySave. A second version, with a revised architecture, is available in
+[EasySave.V2](https://github.com/BaditSad/EasySave.V2).
 
-## Contact
+## :handshake: Contact
 
 Brieuc Dumortier, [LinkedIn](https://www.linkedin.com/in/dumortier-brieuc/), dumortier.contact@gmail.com
